@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/line/index",
+    "pages/Recharge/index",
+    "pages/User/User",
+    "pages/countdowm/countdowm",
+    "pages/personal_informati/personal_informati",
+    "pages/order_information/order_information"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "大宝人工智能充电平台",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "",
+        "iconPath": "static/home-atc.png",
+        "selectedIconPath": "static/home.png"
+      },
+      {
+        "pagePath": "pages/Recharge/index",
+        "text": "",
+        "iconPath": "static/mone-act.png",
+        "selectedIconPath": "static/mone.png"
+      },
+      {
+        "pagePath": "pages/User/User",
+        "text": "",
+        "iconPath": "static/user-atc.png",
+        "selectedIconPath": "static/user.png"
+      }
+    ]
+  }
+}

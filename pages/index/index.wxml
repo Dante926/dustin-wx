@@ -1,0 +1,217 @@
+<!--index.wxml-->
+<view class="page-container">
+<!--头部部分-->
+
+<view class="header-container">
+
+<view class="header-air">
+<view>空气质量 - 良 </view>
+<view>右江区 - 百色 </view>
+</view>
+<view class="header-title"  style="width: 574rpx; height: 62rpx; display: flex; box-sizing: border-box">
+  <view>60 </view>
+  <view>晴 </view>
+</view>
+<view class="header-ad">
+今天天气真不错
+</view>
+<!--显示当前时间-->
+<view class="time">{{ currentTime }}</view>
+</view>
+</view>
+
+<!--数据部分--><!--按键部分开始-->
+<view class="date-container" style="width: 702rpx; height: 600rpx; display: grid; box-sizing: border-box; position: relative; left: 24rpx; top: -6rpx">
+<!--COM1-->
+<view wx:if="{{ COM1_Chose == true}}"class="data-card" style="width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box; left: -30rpx; top: 86rpx; position: relative; background-color: rgb(9, 223, 37);" bindtap="onCOM1Change" >
+<view class="data-card_text">
+    <view class="data-car_title" style="width: 60rpx; height: 70rpx; display: block; box-sizing: border-box; position: relative; left: -30rpx; top: 35rpx"> 1 </view>
+  </view>
+</view> 
+
+<view wx:if="{{ COM1_State == 1}}"class="data-card" style="width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box; left: -30rpx; top: 86rpx; position: relative; background-color: rgb(41, 9, 223);" >
+<view class="data-card_text">
+    <view class="data-car_title" style="width: 60rpx; height: 70rpx; display: block; box-sizing: border-box; position: relative; left: -30rpx; top: 35rpx"> 1 </view>
+  </view>
+</view> 
+
+<view wx:if="{{ COM1_State ==2}}"class="data-card" style="width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box; left: -30rpx; top: 86rpx; position: relative; background-color: rgb(223, 9, 9);">
+<view class="data-card_text">
+    <view class="data-car_title" style="width: 60rpx; height: 70rpx; display: block; box-sizing: border-box; position: relative; left: -30rpx; top: 35rpx"> 1 </view>
+  </view>
+</view> 
+
+<view wx:if="{{COM1_State==0 && COM1_Chose==false}}" class="data-card" style="width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box; left: -30rpx; top: 86rpx; position: relative; " bindtap="onCOM1Change">
+<view class="data-card_text">
+    <view class="data-car_title" style="width: 60rpx; height: 70rpx; display: block; box-sizing: border-box; position: relative; left: -30rpx; top: 35rpx"> 1 </view>
+  </view>
+</view> 
+
+
+<!--COM2-->
+ <view wx:if="{{ COM2_Chose == true}}"   class="data-card" style="width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box; left: -184rpx; top: 86rpx; position: relative; background-color: rgb(9, 223, 37);" bindtap="onCOM2Change">
+     <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: -38rpx; top: 12rpx">2</view>
+  </view>
+  </view>
+
+  <view wx:if="{{ COM2_State == 1}}"   class="data-card" style="width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box; left: -184rpx; top: 86rpx; position: relative;  background-color: rgb(41, 9, 223);">
+     <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: -38rpx; top: 12rpx">2</view>
+  </view>
+  </view>
+
+  <view wx:if="{{ COM2_State == 2}}"   class="data-card" style="width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box; left: -184rpx; top: 86rpx; position: relative; background-color: rgb(223, 9, 9);">
+     <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: -38rpx; top: 12rpx">2</view>
+  </view>
+  </view>
+
+  <view wx:if="{{COM2_State==0 && COM2_Chose==false}}" class="data-card" style="width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box; left: -184rpx; top: 86rpx; position: relative" bindtap="onCOM2Change">
+     <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: -38rpx; top: 12rpx">2</view>
+  </view>
+  </view>
+
+
+
+  <!--COM3-->
+ <view wx:if="{{ COM3_Chose == true}}"   class="data-card" style="position: relative; left: 328rpx; top: -62rpx; width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box ;  background-color: rgb(9, 223, 37);"  bindtap="onCOM3Change">
+      <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: -38rpx; top: 12rpx">3</view>
+  </view>
+  </view>
+
+  <view wx:if="{{ COM3_State == 1}}"   class="data-card" style="position: relative; left: 328rpx; top: -62rpx; width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box ;  background-color: rgb(23, 9, 223);">
+      <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: -38rpx; top: 12rpx">3</view>
+  </view>
+  </view>
+
+  <view wx:if="{{ COM3_State == 2}}"   class="data-card" style="position: relative; left: 328rpx; top: -62rpx; width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box ;  background-color: rgb(223, 9, 9);" >
+      <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: -38rpx; top: 12rpx">3</view>
+  </view>
+  </view>
+
+
+  <view wx:if="{{COM3_State==0 && COM3_Chose==false}}"   class="data-card" style="position: relative; left: 328rpx; top: -62rpx; width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box "  bindtap="onCOM3Change">
+      <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: -38rpx; top: 12rpx">3</view>
+  </view>
+  </view>
+
+  <!--COM4-->
+  <view wx:if="{{ COM4_Chose == true && COM4_State==0 }}" class="data-card" style="position: relative; left: 172rpx; top: -62rpx; width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box; background-color: rgb(9, 223, 37)" bindtap="onCOM4Change">
+    <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: -38rpx; top: 12rpx">4</view>
+  </view>
+  </view>
+   
+  <view wx:if="{{ COM4_State==2}}" class="data-card" style="position: relative; left: 180rpx; top: -62rpx; width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box ;  background-color: rgb(223, 9, 9);" >
+    <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: -38rpx; top: 12rpx">4</view>
+  </view>
+  </view>
+
+  <view wx:if="{{COM4_State==1}}" class="data-card" style="position: relative; left: 180rpx; top: -62rpx; width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box ;  background-color: rgb(9, 12, 223);" >
+    <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: -38rpx; top: 12rpx">4</view>
+  </view>
+  </view>
+  
+  <view wx:if="{{COM4_State==0 && COM4_Chose==false}}" class="data-card" style="position: relative; left: 172rpx; top: -62rpx; width: 120rpx; height: 110rpx; display: flex; box-sizing: border-box" bindtap="onCOM4Change">
+    <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: -38rpx; top: 12rpx">4</view>
+  </view>
+  </view>
+
+
+
+  <!--端口选择提示-->
+  <view class="data-card" style="position: relative; left: -42rpx; top: -342rpx; width: 720rpx; height: 110rpx; display: flex; box-sizing: border-box"  >
+    <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: -11rpx; top: 12rpx; width: 98rpx; color: aqua; height: 46rpx; display: block; box-sizing: border-box">请选择充电端口</view>
+    <view class="data-car_title" style="position: relative; left: 262rpx; top: -34rpx; width: 98rpx;  height: 46rpx; display: block; box-sizing: border-box">空闲</view>
+    <view class="data-car_title" style="position: relative; left: 394rpx; top: -80rpx; width: 98rpx; color: blue; height: 46rpx; display: block; box-sizing: border-box">占用</view>
+    <view class="data-car_title" style="position: relative; left: 526rpx; top: -127rpx; width: 98rpx; color: brown; height: 46rpx; display: block; box-sizing: border-box">禁用</view>
+    
+  </view>
+  </view>
+
+<!--状态页面跳转-->
+  <view class="data-card" bindtap="open" style="position: relative; left: 52rpx; top: -31rpx; width: 240rpx; height: 78rpx; display: flex; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: 0rpx; top: 12rpx; width: 211rpx; height: 48rpx; display: block; box-sizing: border-box">查看充电状态</view>
+   </view>
+
+<!-- 充电金额选择开始-->
+   <view class="data-card" style="position: relative; left: -30rpx; top: -66rpx; width: 240rpx; height: 78rpx; display: flex; box-sizing: border-box"  >
+    <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: 0rpx; top: 0rpx; width: 98rpx; height: 46rpx; color: aqua; display: block; box-sizing: border-box">充电金额选择</view>
+  </view>
+  </view>
+  <!-- 充电金额选择结束-->
+
+<!-- 1元开始-->
+  <view  wx:if="{{  Timer1_Chose == true}}" style="position: relative; left: -30rpx; top: -66rpx; width: 240rpx; height: 78rpx; display: flex; box-sizing: border-box ;  background-color: rgb(48, 9, 223);" bindtap="onTime1Change" >
+    <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+      <view class="data-car_title" style="position: relative; left: 0rpx; top: 0rpx; width: 150rpx; height: 60rpx; display: block; box-sizing: border-box">1元/3小时</view>
+  </view>
+  </view>
+
+  <view wx:else class="data-card" style="position: relative; left: -30rpx; top: -66rpx; width: 240rpx; height: 78rpx; display: flex; box-sizing: border-box "  bindtap="onTime1Change"> 
+    <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: 0rpx; top: 0rpx; width: 150rpx; height: 60rpx; display: block; box-sizing: border-box">1元/3小时</view>
+  </view>
+  </view>
+
+<!-- 1元结束-->
+
+<!-- 2元开始-->
+  <view wx:if="{{Timer2_Chose == true}}" class="data-card" style="position: relative; left: -30rpx; top: -66rpx; width: 240rpx; height: 78rpx; display: flex; box-sizing: border-box ;  background-color: rgb(48, 9, 223); "  bindtap="onTime2Change">
+    <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: 0rpx; top: 0rpx; width: 98rpx; height: 46rpx; display: block; box-sizing: border-box">2元/6小时</view>
+  </view>
+</view>
+
+  <view wx:else class="data-card" style="position: relative; left: -30rpx; top: -66rpx; width: 240rpx; height: 78rpx; display: flex; box-sizing: border-box "  bindtap="onTime2Change">
+    <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: 0rpx; top: 0rpx; width: 98rpx; height: 46rpx; display: block; box-sizing: border-box">2元/6小时</view>
+  </view>
+  </view>
+
+<!-- 2元结束-->
+
+<!-- 自定义开始-->
+  <view wx:if="{{Timerx_Chose == true}}" class="data-card" style="position: relative; left: -30rpx; top: -66rpx; width: 240rpx; height: 78rpx; display: flex; box-sizing: border-box ;  background-color: rgb(48, 9, 223); "  bindtap="onTimexChange" >
+    <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: 0rpx; top: 0rpx; width: 98rpx; height: 46rpx; display: block; box-sizing: border-box">自定义金额</view>
+  </view>
+</view>
+
+<view wx:else class="data-card" style="position: relative; left: -30rpx; top: -66rpx; width: 240rpx; height: 78rpx; display: flex; box-sizing: border-box"  bindtap="onTimexChange" >
+    <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: 0rpx; top: 0rpx; width: 98rpx; height: 46rpx; display: block; box-sizing: border-box">自定义金额</view>
+  </view>
+</view>
+<!--自定义结束-->
+
+</view>
+<!--按键部分结束-->
+<!--介绍篇 -->
+<view class="date-container" style="width: 750rpx; height: 172rpx; display: grid; box-sizing: border-box; position: relative; left: 0rpx; top: -72rpx">
+<view style="width: 168rpx; height: 52rpx; display: block; box-sizing: border-box; position: relative; left: 226rpx; top: 0rpx; font-size: 36rpx ;color: rgb(57, 43, 253);">收费标准</view>
+<view style="width: 344rpx; height: 52rpx; display: block; box-sizing: border-box; position: relative; left: -393rpx; top: 86rpx;color: cornflowerblue;">小功率充电桩收费说明:</view>
+<view style="width: 286rpx; height: 92rpx; display: block; box-sizing: border-box; position: relative; left: 318rpx; top: -22rpx;color: cornflowerblue;">1元3小时，2元6小时；以此类推，可自定义充电时长</view>
+<view style="width: 136rpx; height: 52rpx; display: block; box-sizing: border-box; position: relative; left: 152rpx; top: -26rpx"></view>
+
+</view>
+<!--开始充电界面-->
+<view class="date-container" style="width: 750rpx; height: 172rpx; display: grid; box-sizing: border-box; position: relative; left: 0rpx; top: -108rpx">
+  <view  class="data-card" style="position: relative; left: 50rpx; top: 76rpx; width: 486rpx; height: 90rpx; display: flex; box-sizing: border-box; background-color: rgb(48, 9, 223)"  bindtap="OnStart" >
+    <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: 76rpx; top: -22rpx; width: 266rpx; height: 57rpx; display: block; box-sizing: border-box; font-size: 64rpx">开始充电</view>
+  </view>
+</view>
+</view>
+

@@ -1,0 +1,26 @@
+<view class="countdown-container" style="width: 750rpx; height: 604rpx; display: flex; box-sizing: border-box; position: relative; left: 0rpx; top: -194rpx">
+    <view class="countdown-droplet" :class="{ 'countdown-droplet-animate': animate }" style="width: 346rpx; height: 348rpx; display: block; box-sizing: border-box; position: relative; left: 0rpx; top: 48rpx"></view>
+    <view class="countdown-btn" style="position: relative; left: 0rpx; top: -282rpx; width: 176rpx; height: 44rpx; display: block; box-sizing: border-box">剩余时长：</view>
+    <view class="countdown-time" style="position: relative; left: 0rpx; top: -225rpx; width: 228rpx; height: 70rpx; display: block; box-sizing: border-box">{{time}}</view>
+</view>
+
+<view style="width: 672rpx; height: 432rpx; display: block; box-sizing: border-box; position: relative; left: 39rpx; top: -338rpx">
+          <view class="detail-item"><text class="label">开始时间：</text>{{startTime}}</view>
+          <view class="detail-item"><text class="label">结束时间：</text>{{endTime}}</view>
+          <view class="detail-item"><text class="label">支付金额：</text>{{paymentAmount}}元</view>
+          <view class="detail-item"><text class="label">预计充电时长：</text>{{estimatedChargeDuration}}分钟</view>
+          <view class="detail-item"><text class="label">站点名称：</text>{{siteName}}</view>
+          <view class="detail-item"><text class="label">站点编号：</text>{{siteNumber}}</view>
+          <view class="detail-item"><text class="label">端口号：</text>{{portNumber}}</view>
+        </view>
+
+
+<!--开始充电界面-->
+<view class="date-container" style="width: 750rpx; height: 172rpx; display: grid; box-sizing: border-box; position: relative; left: -1rpx; top: -254rpx">
+  <view  class="data-card" style="position: relative; left: 75rpx; top: -4rpx; width: 486rpx; height: 90rpx; display: flex; box-sizing: border-box; background-color: rgb(48, 9, 223)"  bindtap="OnStop" >
+    <view class="data-card_text" style="position: absolute; left: 36rpx; top: 20rpx; width: 76rpx; height: 12rpx; display: block; box-sizing: border-box">
+    <view class="data-car_title" style="position: relative; left: 76rpx; top: -22rpx; width: 266rpx; height: 57rpx; display: block; box-sizing: border-box; font-size: 64rpx">结束充电</view>
+  </view>
+</view>
+</view>
+

@@ -1,0 +1,27 @@
+<view class="bgView flexStandard" style="width: 750rpx; height: 207rpx; display: block; box-sizing: border-box">
+  <view class="titleBox">
+    <view class="titleView"><text class="title">钱包余额</text></view>
+    <view style="width: 750rpx; height: 50rpx; display: block; box-sizing: border-box;"><text class="num" >{{Mone}}元</text></view>
+  </view>
+</view>
+<view class="czhiView flexVertical" style="width: 807rpx; height: 108rpx; display: block; box-sizing: border-box">
+  <text>充值金额</text>
+</view>
+
+<view class="flexCenten">
+  <view class="btnView">
+    <view class="flexCenten {{activeIndex == index ? 'active':'noactive'}}" wx:for="{{numArray}}" wx:key="index"
+      bindtap="activethis" data-thisindex="{{index}}">
+      <text wx:if="{{item!='m'}}" class="otherText">￥{{item}}</text>
+      <text wx:if="{{item=='m' && activeIndex != index}}" class="zidyText">自定义金额</text>
+      <input wx:if="{{item=='m' && activeIndex == index}}" class="weui-input inputView" type="number" bindinput='getValue'
+     placeholder="请输入金额"></input>
+    </view>
+  </view>
+</view>
+
+<view class="czhiBox flexStandard" style="width: 584rpx; height: 80rpx; display: block; box-sizing: content-box">
+  <view class="btnczhi flexCenten" style="width: 746rpx; height: 75rpx; display: block; box-sizing: border-box"  bindtap="Recharge" >
+    <text >立即充值</text>
+  </view>
+</view>

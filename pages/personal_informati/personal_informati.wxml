@@ -1,0 +1,23 @@
+<!--pages/personal_informati/personal_informati.wxml-->
+
+
+<!-- index.wxml -->
+<view class="container">
+  <!-- 用户名 -->
+  <view class="info-item">
+    <text class="label">用户名：</text>
+    <text class="value">{{username}}</text>
+  </view>
+
+  <!-- 电话号码 -->
+  <view class="info-item">
+    <text class="label">电话号码：</text>
+    <text class="value">{{phoneNumber}}</text>
+  </view>
+
+  <!-- 修改用户名按钮 -->
+  <button class="btn" bindtap="changeUsername">修改用户名</button>
+
+  <!-- 修改密码按钮 -->
+  <button class="btn" bindtap="changePassword" style="position: relative; left: 0rpx; top: 6rpx">修改密码</button>
+</view>

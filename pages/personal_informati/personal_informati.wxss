@@ -1,0 +1,58 @@
+/* pages/personal_informati/personal_informati.wxss */
+/* index.wxss */
+.container {
+  padding: 20px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.label {
+  width: 100px;
+  font-weight: bold;
+}
+
+.value {
+  flex-grow: 1;
+}
+
+.btn {
+  width: 200px;
+  height: 40px;
+  background-color: #337ab7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+}/* index.wxss */
+.container {
+  padding: 20px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.label {
+  width: 100px;
+  font-weight: bold;
+}
+
+.value {
+  flex-grow: 1;
+}
+
+.btn {
+  width: 200px;
+  height: 40px;
+  background-color: #337ab7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+}

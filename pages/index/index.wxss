@@ -1,0 +1,95 @@
+/**index.wxss**/
+.page-container{
+  padding: 25rpx;
+}
+
+.header-container{
+background-color: #0206d8;
+color: #ffffff;
+border-radius: 80rpx;
+padding: 32rpx 64rpx;
+}
+
+.header-container .header-air{
+display: flex;
+justify-content: space-between;
+font-size: 28rpx;
+}
+
+.header-container .header-title{
+  display: flex;
+  justify-content: space-between;
+  font-size: 64rpx;
+  }
+
+  .header-container .header-ad{
+font-size: 28rpx;
+margin-top: 24rpx;
+justify-content: center;
+    }
+  .date-container{
+    /* background-color: chocolate;*/ 
+      margin-top: 36rpx;
+      display: grid;
+      justify-content: center;
+      grid-template-columns: repeat(auto-fill,300rpx);
+      grid-gap: 36rpx;
+    }
+    .date-container .data-card{
+      position: relative;
+      background-color: rgb(255, 255, 255);
+       height: 140rpx;
+      box-shadow: #d6d6d6 0 0 8rpx;
+      border-radius: 29rpx;
+      display: flex;
+      justify-content: space-between;
+    
+    }
+
+    .date-container .data-card2{
+      position: relative;
+      background-color: rgb(48, 9, 223);
+       height: 140rpx;
+      box-shadow: #d6d6d6 0 0 8rpx;
+      border-radius: 29rpx;
+      display: flex;
+      justify-content: space-between;
+    
+    }
+
+    .date-container .data-card .data-card_text{
+position: absolute;
+right: 32rpx;
+text-align: right;
+white-space: nowrap;
+    }
+
+    .date-container .data-card .data-card_icon{
+    height: 72rpx;
+    width: 72rpx;
+  left:32rpx;
+  top: 16rpx;  
+  }
+    
+    .date-container .data-card .data-card_title{
+      font-size: 28rpx;
+      color: #7f7f7f;
+    }
+
+    .date-container .data-card .data-card_value{
+    font-size: 52rpx;
+    font-weight: bold;
+    color: #7f7f7f;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20;
+      }
+      
+      .time {
+        font-size: 24px;
+        font-weight: bold;
+      }
