@@ -35,7 +35,7 @@ Page({
     code: "", //随机生成验证码
     mcode: '' //用户输入的验证码
   },
-  // 账号登录监听
+
   // 账号登录监听
   getUser: debounce(function (e) {
     console.log("登录账号监听");
@@ -98,22 +98,31 @@ Page({
   },
 
   //  注册账号、密码监听
-  get_register_Phone: function (e) {
+  get_register_Phone: debounce(function (e) {
     console.log("登录账号监听");
     console.log(e.detail);
-    /*将输入的数据转化成数字*/
-    var a1 = e.detail.value;
-    var a2 = RegExp('^\-', 'g').exec(e.detail.value)
-    var g = 1;
-    if (a2) {
-      g = -1;
+
+    // 获取输入的数据
+    var inputValue = e.detail.value.trim(); // 去掉首尾空格
+
+    // 处理负号和数字提取
+    var sign = 1;
+    if (inputValue.startsWith('-')) {
+      sign = -1;
+      inputValue = inputValue.substring(1); // 去掉负号
     }
-    var a3 = parseFloat(a1.replace(/\D/g, '')) * g
+
+    // 提取纯数字部分
+    var numericValue = parseFloat(inputValue.replace(/\D/g, '')); // 替换非数字字符
+    numericValue = isNaN(numericValue) ? 0 : numericValue; // 如果转换结果是NaN，则设为0
+    var finalValue = numericValue * sign;
+
+    // 将处理后的结果存储到数据中
     this.setData({
-      userPhone: a3, //将获取的电话账号存储
-      UserPhoneCursor: e.detail.cursor
-    })
-  },
+      userPhone: finalValue, // 将处理后的电话号码存储
+      UserPhoneCursor: e.detail.cursor // 存储光标位置
+    });
+  }, 500),
 
   //注册密码输入监听
   get_register_Passwd1: function (e) {
@@ -241,14 +250,13 @@ Page({
     var inputCode = this.data.mcode; // 获取输入的验证码
     var generatedCode = this.data.code;
     if (this.data.current == 1) { //登录功能
-      if (this.data.UserPhone == ' ') { //账户为空则提示
+      if (this.data.UserPhone == ' ') { //账户为空提示
         wx.showToast({
           //反馈
           title: '请输入账号',
           icon: 'none'
         })
       } else { //查询数据库
-        // 登录功能 - Dante
         // 设置请求参数
         const params = {
           Phone: this.data.UserPhone //根据手机号搜索
@@ -273,7 +281,8 @@ Page({
                 url: '/pages/User/User',
                 success: () => {
                   wx.showToast({
-                    title: '登录成功'
+                    title: '登录成功',
+                    icon: 'none'
                   })
                 }
 
@@ -288,53 +297,61 @@ Page({
       }
     } else { //注册功能
 
-      if (this.data.UserPhoneCursor != 11 || inputCode != generatedCode) { //账户为空则提示,验证码正确，执行登录逻辑
+      if (this.data.UserPhoneCursor != 11 || inputCode != generatedCode) { //账户或验证码不正确提示
         wx.showModal({
           title: '错误',
           content: '请检查账户和验证码',
         })
-      } else if (this.data.UserPhoneCursor == 11 && this.data.userPasswd1 == this.data.userPasswd2 && inputCode == generatedCode) { //查询数据库
-        wx.request({
-          method: 'POST',
-          url: this.data.localhost + '/InUser',
-          data: {
-            Phone: this.data.userPhone, //注册账号
-            Passwd: this.data.userPasswd1 //注册密码
-          },
-          /*读取数据库信息*/
-          success: (res) => {
-            console.log(res);
-            if (res.data == "error") {
+      } else if (this.data.UserPhoneCursor == 11 && this.data.userPasswd1 == this.data.userPasswd2 && inputCode == generatedCode) { // 账号位数正确，两次密码相同，验证码正确，访问注册接口
+
+        // 注册接口 -Dante
+        const params = { // 请求参数
+          Phone: this.data.userPhone, //注册账号
+          Password: this.data.userPasswd1 //注册密码
+        }
+        axios('/logs/register', 'POST', params)
+          .then(res => { // 请求成功回调
+            if (res.data.data == "error") { // 用户名已被注册
               wx.showToast({
                 //反馈
-                title: '账户已被注册'
+                title: '账户已被注册',
+                icon: 'none'
               })
+              return;
             }
-            if (res.data.message == "InUser_success") {
-              wx.showModal({
-                title: '提示',
-                content: '注册成功，快去登录吧！',
-              })
-              this.setData({
+            if (res.data.message == "register_success") { // 注册成功
+              this.setData({ // 初始化值
                 current: 1,
-                userPhone: 0,
-                userPasswd1: 0,
-                userPasswd2: 0
+                userPhone: '',
+                userPasswd1: '',
+                userPasswd2: '',
+                UserPhoneCursor: '',
+                generatedCode: ''
               })
+              console.log(this.data);
+              wx.showModal({ // 成功提示
+                title: '注册成功，快去登录吧！',
+                icon: 'none'
+              })
+              return;
             }
-          },
-          fail: function () { //没有获取到值，说明这中间出问题了。
-            console.log("获取失败");
-          }
-        });
+          })
+          .catch(err => { // 服务器返回err，因其他原因导致操作失败
+              wx.showModal({
+                title: '操作失败，请重试',
+                icon: 'none'
+              })
+              return;
+            }
 
-      } else {
+          )
+      } else { // 注册密码不一致提示
         wx.showToast({
-          //反馈
-          title: '密码不一致'
+          title: '两次密码不一致',
+          icon: 'none'
         })
+        return;
       }
-      console.log("还是有效果的");
     }
   },
 
