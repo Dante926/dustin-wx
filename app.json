@@ -1,18 +1,19 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
+    "pages/fetch02/fetch02",
+    "pages/fetch/fetch",
     "pages/line/index",
     "pages/Recharge/index",
-    "pages/User/User",
-    "pages/countdowm/countdowm",
+    "pages/order_information/order_information",
     "pages/personal_informati/personal_informati",
-    "pages/order_information/order_information"
+    "pages/User/User",
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "大宝人工智能充电平台",
+    "navigationBarTitleText": "纸兄-智能取纸平台",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",

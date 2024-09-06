@@ -1,36 +1,21 @@
 <!--pages/order_information/order_information.wxml-->
 <!-- orders.wxml -->
 <view class="container">
-  <view class="title">订单管理</view>
-  
-  <!-- 订单列表 -->
-  <view class="order-list">
-    <!-- 单个订单 -->
-    <block wx:for="{{orders}}" wx:key="index">
-      <view class="order-item">
-        <!-- 充电状态 -->
-        <view class="status">
-        <view wx:if="{{item.State==1}}">充电中</view>
-        <view wx:else>充电结束</view>
-        </view>
-
-        <view class="sub-title">
-          <view wx:if="{{item.State==1}}">您本次订单已开始充电</view>
-          <view wx:else>订单结束，感谢您的使用</view>
-        </view>
-        
-        <!-- 订单详情 -->
-        <view class="order-detail">
-          <view class="detail-item"><text class="label">订单编号：</text>{{item.orderNumber}}</view>
-          <view class="detail-item"><text class="label">开始时间：</text>{{item.startTime}}</view>
-          <view class="detail-item"><text class="label">结束时间：</text>{{item.endTime}}</view>
-          <view class="detail-item"><text class="label">支付金额：</text>{{item.paymentAmount}}元</view>
-          <view class="detail-item"><text class="label">预计充电时长：</text>{{item.estimatedChargeDuration}}分钟</view>
-          <view class="detail-item"><text class="label">站点名称：</text>{{item.siteName}}</view>
-          <view class="detail-item"><text class="label">站点编号：</text>{{item.siteNumber}}</view>
-          <view class="detail-item"><text class="label">端口号：</text>{{item.portNumber}}</view>
+  <view class="title">历史订单</view>
+  <view>
+    <block wx:if="{{flag}}">
+      <view wx:for="{{Machine}}" data-item="item" wx:for-index="idx">
+        <view class="box2">
+          <view class="box3">2024-09-20 15:11:30</view>
+          <view class="box4">
+            <view class="t1">{{Machine[item]==0? '取纸机01':'取纸机02'}}</view>
+            <view class="t2">{{spending[idx]}}元</view>
+          </view>
         </view>
       </view>
+    </block>
+    <block wx:else>
+      <image class="box1" src="../../images/empty3.jpg"></image>
     </block>
   </view>
 </view>

@@ -1,6 +1,3 @@
 {
-  "navigationBarTitleText": "用户登录",
-  "usingComponents": {
-    "logs": "../../pages/logs/logs"
-  }
+  "navigationBarTitleText": "用户登录"
 }

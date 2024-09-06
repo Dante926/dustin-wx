@@ -1,0 +1,58 @@
+.head{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100rpx;
+  margin-bottom: 100rpx;
+}
+
+.avatar{
+  height: 200px;
+  width: 200px;
+  border-radius: 100px;
+  border-width: 8rpx;
+  border-color: #00ff00;
+  border-style: solid;
+  background-color: #ffffff;
+}
+
+.box01{
+  margin-left: 25%;
+  margin-top: 50rpx;
+  text-align: center;
+  width: 50%;
+  height: 100rpx;
+  font-size: 45rpx;
+  font-family: 幼圆;
+  font-weight: bold;
+}
+
+.box02{
+  width: 500rpx;
+  height: 140rpx;
+  border-radius: 70rpx;
+  background-color: #00ff00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52rpx;
+  font-weight: bold;
+  font-family: 楷体;
+}
+
+.box03{
+  width: 500rpx;
+  height: 140rpx;
+  border-radius: 70rpx;
+  background-color: #888888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52rpx;
+  font-weight: bold;
+  font-family: 楷体;
+}
+
+.box04{
+  color: red;
+}

@@ -5,7 +5,7 @@ page {
 /* 设置背景颜色 */
 .top-bg {
   height: 260rpx;
-  background-color: #fa3534;
+  background-color: #4ce6ab;
 }
 /* 圆角盒子 */
 .box {

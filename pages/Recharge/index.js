@@ -1,5 +1,5 @@
 const app = getApp();
-const LogsData =require('../../pages/logs/logs.js')
+// const LogsData =require('../../pages/logs/logs.js')
 Page({
   /**
    * 页面的初始数据
@@ -7,10 +7,10 @@ Page({
   data: {
     localhost:app.globalData.localhost,
     activeIndex: 0, //默认选中第一个
-    numArray: [20, 30, 50, 80, 100,'m'],//充值金额的挡位选择
+    numArray: [5, 10, 20, 30, 50,'m'],//充值金额的挡位选择
     date:[],
     Mone:app.globalData.Usermone,
-    Chose:20,//选择充值得金额，默认20
+    Chose:5,//选择充值得金额，默认20
     IputVal:0,//自定义的金额
     UserPhone:app.globalData.UserPhone
   },
@@ -59,10 +59,6 @@ Page({
            /*读取数据库信息*/
         success :(res) => {
           console.log(res);
-         //console.log(res.data[0].mone);
-         this.setData({
-        //  mone:res.data[0].mone
-          })
         },
           fail: function () {//没有获取到值，说明这中间出问题了。
             console.log("获取失败");
@@ -95,61 +91,13 @@ Page({
   })
    //
   }, 
- onLoad() {
+ onShow() {
   if (app.globalData.show==true){//用户已经登录
-  wx.request({
-    method: 'POST',//这里要和 server.js 定义的 post or get 一致！！！
-    url: this.data.localhost+'/getUser',//这里的 ip 地址不是数据库的地址，而是你的电脑本地的地址，因为这一步的操作是要找到本地 nodejs 服务器。getUser 要和 server.js 中定义的方法名一致。
-    data: {
-      //这里面是传入参数。比如我们要 select * from data where openid= 给定的 openid，就可以从这里传
-      Phone:app.globalData.UserPhone
-    }, 
-    
-  success :(res) => {//读取数据库信息
-    console.log(res); 
-    console.log(res.data[0].mone);//输出余额
-   this.setData({ 
-    Mone:res.data[0].mone
-    })
-  },
-    fail: function () {//没有获取到值，说明这中间出问题了。
-      console.log("获取失败");
-    }
-  })
-    setInterval(() => {
-    //我们写一个调用数据库函数，使得本页面加载时调用此函数，查找 youqi.data 里的所有条目。
-    if(app.globalData.show){   
-    wx.request({ 
-          method: 'POST',//这里要和 server.js 定义的 post or get 一致！！！
-        url: this.data.localhost+'/getUser',//这里的 ip 地址不是数据库的地址，而是你的电脑本地的地址，因为这一步的操作是要找到本地 nodejs 服务器。getUser 要和 server.js 中定义的方法名一致。
-        data: {
-          //这里面是传入参数。比如我们要 select * from data where openid= 给定的 openid，就可以从这里传
-          Phone:app.globalData.UserPhone
-        }, 
-        //读取数据库信息
-      success :(res) => {
-        console.log(res); 
-        console.log(res.data[0].mone);//输出余额
-        this.setData({
-          Mone:res.data[0].mone
-        })
-        app.globalData.Usermone=res.data[0].mone
-        console.log(app.globalData.Usermone)
-      },
-        fail: function () {//没有获取到值，说明这中间出问题了。
-          console.log("获取失败");
-        }
-      });
-    }
-    else{
-      this.setData({
-        Mone:0
-      })
-    }
-        },10000); // 每隔5秒重新加载一次页面
-      }
-else {//假如没有登录
-    wx.showModal({
+    this.setData({Mone:app.globalData.Usermone})
+  }
+    else {//假如没有登录
+      this.setData({Mone:0})
+      wx.showModal({
       title: '提示',
       content: '请先登录',
       success(res) {

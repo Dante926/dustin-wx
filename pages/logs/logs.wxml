@@ -1,9 +1,9 @@
 <view class="top-box">
-  <view>Hi</view>
-  <view class="next-text">欢迎使用！</view>
+  <view>Hi，纸兄！</view>
+  <view class="next-text">欢迎使用物联网智能取纸机！</view>
 </view>
 <!-- 登录、注册 -->
-<view class="center-box" >
+<view class="center-box">
   <view class="nav">
     <view class="left {{current==1?'select':''}}" bindtap="click" data-code="1">
       <text>登录</text>
@@ -15,48 +15,47 @@
   <!-- 登录 -->
   <view class="input-box" hidden="{{current==0}}">
     <view class="wei-input">
-      <icon type="waiting" color="#44ADFB" size="16"></icon>
-      <input class="input"   bindinput='getUser' auto-focus placeholder="请输入手机号"/>
+      <icon type="waiting" color="#0a9b3a" size="16"></icon>
+      <input class="input" bindinput='getUser' auto-focus placeholder="请输入手机号" />
     </view>
     <view class="wei-input">
-      <icon type="success" color="#44ADFB" size="16"></icon>
-      <input class="input" bindinput='getPower' auto-focus placeholder="请输入登录密码"/>
+      <icon type="success" color="#0a9b3a" size="16"></icon>
+      <input type="password" class="input" bindinput='getPower' auto-focus placeholder="请输入登录密码" />
     </view>
-    <view class="forget">
+    <view class="forget" bindinput='forgetPower'>
       <text>忘记密码?</text>
     </view>
   </view>
   <!-- 注册 -->
   <view class="input-box" hidden="{{current==1}}">
     <view class="wei-input">
-      <icon type="waiting" color="#44ADFB" size="16"></icon>
-      <input class="input" bindinput='get_register_Phone' auto-focus placeholder="请输入手机号"/>
+      <icon type="waiting" color="#0a9b3a" size="16"></icon>
+      <input class="input" bindinput='get_register_Phone' auto-focus placeholder="请输入手机号" />
     </view>
     <view class="wei-input">
-      <icon type="waiting" color="#44ADFB" size="16"></icon>
-      <input class="input" auto-focus placeholder="请输入6位验证码"/>
+      <icon type="waiting" color="#0a9b3a" size="16"></icon>
+      <input class="input" bindinput='get_register_Code' auto-focus placeholder="请输入6位验证码" />
       <text class="input-code" bindtap="getCode">{{codeText}}</text>
     </view>
     <view class="wei-input">
-      <icon type="success" color="#44ADFB" size="16"></icon>
-      <input class="input" bindinput='get_register_Passwd1'  auto-focus placeholder="请输入密码"/>
+      <icon type="success" color="#0a9b3a" size="16"></icon>
+      <input type="password" class="input" bindinput='get_register_Passwd1' auto-focus placeholder="请输入密码" />
     </view>
     <view class="wei-input">
-      <icon type="success" color="#44ADFB" size="16"></icon>
-      <input class="input" bindinput='get_register_Passwd2' auto-focus placeholder="请确认密码"/>
+      <icon type="success" color="#0a9b3a" size="16"></icon>
+      <input type="password" class="input" bindinput='get_register_Passwd2' auto-focus placeholder="请确认密码" />
     </view>
+    <text>验证码:{{code}}</text>
   </view>
   <view class="sumbit-btn">
-    <button class="button" 
-    style="background-color: #33ccff;font-size: 30rpx;" bindtap="Logs" 
-    type="primary">立即{{current==1?'登录':'注册'}}</button>
+    <button class="button" style="background-color: #2dbd69;font-size: 30rpx;" bindtap="Logs" type="primary">立即{{current==1?'登录':'注册'}}</button>
   </view>
 </view>
 <!-- 重影 -->
-<view class="shadow shadow-1"></view><view class="shadow shadow-2"></view>
+<view class="shadow shadow-1"></view>
+<view class="shadow shadow-2"></view>
 <!-- 说明 -->
 <view class="bottom-box">
-<p>作者：LTH,通信地址：信息工程学院-物联本202
-</p>
+  <p>作者：小蛋,unstoppable
+  </p>
 </view>
-

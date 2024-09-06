@@ -2,18 +2,12 @@
 const app = getApp();
 Page({
   data: {
-    localhost:app.globalData.localhost,
-    orders: app.globalData.orders
+    localhost:app.globalData.localhost,//本地地址
+    orders: app.globalData.orders,//订单信息数组
+    flag:false,
+    times:3,
+    Machine:[0,1,0],
+    spending:[0,0,2],
   },
-  onLoad: function() {
-    // 使用定时器，每隔一段时间执行页面重定向
-    setInterval(() => {
-      if(app.globalData.Flag){
-        this.setData({
-           orders:app.globalData.orders
-        })
-      app.globalData.Flag=false;
-      }
-    }, 1000); // 每1秒刷新一次页面
-  }
+
 })

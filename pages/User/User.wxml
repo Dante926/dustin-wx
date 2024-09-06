@@ -4,13 +4,13 @@
 
   <view class="num">
   <view>{{num}}</view>
-</view>
+</view>  
 -->
   <view class="head-box">
-    <button open-type="chooseAvatar" class="avatar" bindchooseavatar="chooseAvatar">
-      <image class="head-img" src="{{login.avatar}}" mode="widthFix"></image>
+    <button wx:if="{{login.show}}" open-type="chooseAvatar" class="avatar" bindchooseavatar="chooseAvatar">
+      <image class="head-img" src="/static/dabao.png" mode="widthFix"></image>
     </button>
-    <view class="tip" bindtap="chooseAvatar">{{login.show?'大宝助手为您服务！':'当前未登录，点击登录'}}</view>
+    <view class="tip" bindtap="chooseAvatar">{{login.show?'欢迎使用纸兄智能取纸机！':'尚未登录，点击登录'}}</view>
   </view>
   <!-- 第一部分列表 -->
   <view>
@@ -19,21 +19,15 @@
         <icon class="icon-small" type="success" size="16"></icon>
         <text class="text">基本信息</text>
       </view>
-      <view class="right">》</view>
+      <view class="right">>></view>
     </button>
-    <button class="row" style="width: 100%;" bindtap="feedbackClick">
-      <view class="left">
-        <icon class="icon-small" type="success" size="16"></icon>
-        <text class="text">匿名反馈</text>
-      </view>
-      <view class="right">》</view>
-    </button>
+
     <button class="row" style="width: 100%;border-bottom: none;" bindtap="aboutClick">
       <view class="left">
         <icon class="icon-small" type="success" size="16"></icon>
-        <text class="text">订单管理</text>
+        <text class="text">历史订单</text>
       </view>
-      <view class="right">》</view>
+      <view class="right">>></view>
     </button>
   </view>
 </view>
@@ -42,17 +36,11 @@
   <button open-type="share" class="row" style="width: 100%;">
     <view class="left">
       <icon class="icon-small" type="success" size="16"></icon>
-      <text class="text">分享好友</text>
+      <text class="text">申请租赁</text>
     </view>
-    <view class="right">》</view>
+    <view class="right">>></view>
   </button>
-  <button open-type="contact" class="row" style="width: 100%;border-bottom: none;">
-    <view class="left">
-      <icon class="icon-small" type="success" size="16"></icon>
-      <text class="text">在线客服</text>
-    </view>
-    <view class="right">》</view>
-  </button>
+ 
 </view>
 <!-- 第三部分列表 -->
 <view class="end">
@@ -70,5 +58,5 @@
   </button>
 </view>
 <view class="footer">
-  <text>©微信小程序个人中心demo</text>
+  <text>©物联网智能取纸系统demo</text>
 </view>

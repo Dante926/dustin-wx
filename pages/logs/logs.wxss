@@ -7,7 +7,7 @@ page{
 /* 顶部背景 */
 .top-box{
   height: 30%;
-  background-image: linear-gradient( #44ADFB,#5ed6fd);
+  background-image: linear-gradient( #24c75a,#63ddaa);
   padding: 30rpx;
   color: white;
   font-weight: bold;
@@ -21,8 +21,8 @@ page{
   margin: -20% 20rpx 0rpx 20rpx;
   padding: 25rpx;
   border-radius: 15rpx;
-  -webkit-filter: drop-shadow(0 0 8rpx #44ADFB);
-  filter: drop-shadow(0 0 8rpx #44ADFB);
+  -webkit-filter: drop-shadow(0 0 8rpx #08db67);
+  filter: drop-shadow(0 0 8rpx #18e273);
 }
 /* 导航 */
 .nav{
@@ -41,13 +41,13 @@ page{
 }
 .select{
   font-weight: bold;
-  color: #33ccff;
+  color: #2dbd69;
 }
 .select text{
   padding-bottom: 5rpx;
   border-bottom-left-radius: 10rpx;
   border-bottom-right-radius: 10rpx;
-  border-bottom: 5rpx solid #33ccff;
+  border-bottom: 5rpx solid #0a9b3a;
 }
 .wei-input{
   display: flex;
@@ -75,7 +75,7 @@ page{
 }
 .forget{
   font-size: 26rpx;
-  color: #33ccff;
+  color: #0a9b3a;
   margin-top: 20rpx;
   text-align: right;
 }

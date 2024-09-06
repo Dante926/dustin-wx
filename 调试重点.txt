@@ -1,0 +1,5 @@
+当真机调试时使用局域网，手机开热点给电脑，电脑连接同一个局域网然后查看并使用电脑IP地址 
+！！！！！设置APP.js里的localhost为局域网ip
+"pages/logs/logs", 
+"pages/line/index",
+"pages/Recharge/index",

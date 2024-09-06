@@ -1,136 +1,160 @@
 const app = getApp();
-const LogsData =require('../../pages/logs/logs.js')
+// const LogsData =require('../../pages/logs/logs.js')
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     login: {
-     show: app.globalData.show,
-     avatar: "/static/dabao.png",//头像地址
+      show: app.globalData.show,
+      avatar: "/static/dabao.png", //头像地址
     },
-    UserPhone:app.globalData.UserPhone,
-    localhost:app.globalData.localhost,
-    num:20 //计数值
+    UserPhone: app.globalData.UserPhone,
+    localhost: app.globalData.localhost,
+    num: 20 //计数值
+  },
+
+  // 获取code、userInfo等信息
+  getUserProfile() {
+    var p1 = new Promise((resolve, reject) => {
+      wx.login({
+        success: res => {
+          // 这里也可以选择性返回需要的字段
+          resolve(res)
+        }
+      })
+    })
+    var p2 = new Promise((resolve, reject) => {
+      wx.getUserProfile({
+        desc: '用于完善会员资料',
+        success: res => {
+          // 这里也可以选择性返回需要的字段
+          resolve(res)
+        }
+      })
+    })
+    // 同时执行p1和p2，并在它们都完成后执行then
+    Promise.all([p1, p2]).then((results) => {
+      // results是一个长度为2的数组，放置着p1、p2的resolve
+      this.handleUserInfo({
+        // 这里也可以选择性返回需要的字段
+        ...results[0],
+        ...results[1]
+      })
+    })
+  },
+  // 组织好后端需要的字段，并调用接口
+  handleUserInfo(data) {
+    const {
+      code,
+      encryptedData,
+      userInfo,
+      iv,
+      rawData,
+      signature,
+      cloudID
+    } = data
+    const params = {
+      userInfo,
+      // ....
+    }
+    // 调用接口维护本地登录态
   },
 
   // 登录监听
   chooseAvatar(e) {
-    if(app.globalData.show == false){
-    wx.navigateTo({
-      url: '/pages/logs/logs'
-     })
+    if (app.globalData.show == false) {
+      wx.navigateTo({
+        url: '/pages/logs/logs'
+      })
     }
   },
   // 基本信息
   basicClick() {
     console.log('基本信息监听');
-    if(app.globalData.show==true){
+
+    if (app.globalData.show == true) {
       wx.navigateTo({
         url: '/pages/personal_informati/personal_informati',
       })
+    } else {
+      wx.showModal({
+        title: '请先登录',
+        complete: (res) => {
+          if (res.confirm) {}
+        }
+      })
     }
-    else{
-      wx.showToast({
-        //反馈
-        title: '请登录'
-        })
-
-    }
-  },
-  // 匿名反馈
-  feedbackClick() {
-    console.log('匿名反馈监听');
   },
   // 订单管理监听
   aboutClick() {
     console.log('订单管理监听');
-if(app.globalData.show==true){
-  wx.request({
-    method: 'POST',
-    url: this.data.localhost+'/getorderlist',
-    data: {
-         Phone:app.globalData.UserPhone//根据手机号搜索
-    },
-     /*读取数据库信息*/
-  success :(res) => {
-    console.log(res);
-    console.log("数组长度为："+res.data.length);//显示数组长度
-    for (let i =res.data.length; i>0; i--) {
-      app.globalData.orders.push(
-      {
-      State:res.data[i-1].status_bar,
-      orderNumber:res.data[i-1].orderld,
-      startTime:res.data[i-1].startime,
-      endTime:res.data[i-1].endtime,
-      paymentAmount:res.data[i-1].mone,
-      estimatedChargeDuration:res.data[i-1].Timer,
-      siteName:res.data[i-1].Site,
-      siteNumber:res.data[i-1].End,
-      portNumber:res.data[i-1].COM
-    }
-        );
-        console.log(i);
-      // 循环体的操作
-    } 
-      console.log(app.globalData.orders);
-    app.globalData.Flag=true;
-  },
-    fail: function () {//没有获取到值，说明这中间出问题了。
-      console.log("获取失败");
-    }
-  });
-    wx.navigateTo({
-      url: '/pages/order_information/order_information',
-    })
+    if (app.globalData.show == true) {
+      app.globalData.order = null,
+        app.get_order();
+      wx.navigateTo({
+        url: '/pages/order_information/order_information',
+      })
+    } else {
+      wx.showModal({
+        title: '请先登录',
+        complete: (res) => {
+          if (res.confirm) {
 
-  }
+          }
+        }
+      })
+    }
+
   },
   // 退出登录
   exitClick(e) {
     let that = this;
-if (this.data.login.show==true) {
-    wx.showModal({
-      title: '提示',
-      content: '确定退出登录吗？',
-      success(res) {
-        if (res.confirm) {
-          app.globalData.show=false,
-          app.globalData.UserPhone=0,
-          app.globalData.Usermone=0,
-        that.setData({
-            login: {
-              show:false,
-              avatar: "/static/dabao.png",
-            }
-          }) 
-        }        
-      }
-    })
-  } 
-  else {
-wx.navigateTo({
-  url: '/pages/logs/logs'
- });
- this.setData({
-  login: {
-    //show: true,
-    avatar: "/static/dabao.png",
-  }
-})
-  }
+    if (this.data.login.show == true) {
+      wx.showModal({
+        title: '提示',
+        content: '确定退出登录吗？',
+        success(res) {
+          if (res.confirm) {
+            app.globalData.show = false,
+              app.globalData.UserPhone = 0,
+              app.globalData.Usermone = 0,
+              that.setData({
+                login: {
+                  show: false,
+                }
+              })
+          }
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/logs/logs'
+       });
+      this.setData({
+        login: {
+          //show: true,
+          avatar: "/static/dabao.png",
+        }
+      })
+    }
   },
- Returnindx(){
-    wx.switchTab({
-      url: '/pages/index/index'
-});
+  Returnindx: function (e) {
+    wx.navigateTo({
+      url: '/pages/index/index',
+    });
   },
-  getData(){
+  //  Returnindx(){
+  //     wx.switchTab({
+  //       url: '/pages/index/index'
+  // });
+  //   },
+  getData() {
     this.setData({
       login: {
-     show:app.globalData.show,
+        show: app.globalData.show,
       },
-     UserPhone:app.globalData.UserPhone
+      UserPhone: app.globalData.UserPhone
     })
 
   },
@@ -144,4 +168,3 @@ wx.navigateTo({
     }, 1000); // 每隔5秒重新加载一次页面
   },
 })
-

@@ -1,6 +1,6 @@
 .active {
-  background-color: #6d97f8;
-  border: 2px solid #6d97f8;
+  background-color: #1cd362;
+  border: 2px solid #5ddb83;
   color: white;
 }
  
@@ -46,7 +46,7 @@
 }
  
 .bgView {
-  background-image: linear-gradient(0deg, #6d97f8, #5cb3f3);
+  background-image: linear-gradient(0deg, #03c253, #7bdf7b);
   height: 150rpx;
   width: 100%;
   margin-bottom: 30rpx;
@@ -91,12 +91,13 @@
 /*立即充值*/
 .btnczhi{
   width: 94%;
-  background-image: linear-gradient(45deg, #6d97f8, #5cb3f3);
+  background-image: linear-gradient(45deg, #21cf6a, #7af5cc);
   height: 80rpx;
   border-radius: 10rpx;
   text-align: center;
 }
 .btnczhi text{
   color: white;
-  font-size: 32rpx;
+  font-size: 50rpx;
+  text-align: center;
 }

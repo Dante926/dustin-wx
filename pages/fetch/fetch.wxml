@@ -1,0 +1,47 @@
+
+<view class="head">
+  <image class="avatar" src="/images/OIP-C.png"></image>
+</view>
+
+<view wx:if="{{mode == 0}}">
+  <view class="box01">
+    容量：{{total}}
+  </view>
+  <view class="box01" >
+    模式:  免费模式
+  </view>
+  <view class="box01">
+    金额:  --元
+  </view>
+</view>
+
+<view wx:if="{{mode == 1}}">
+  <view class="box01">
+    容量：{{total}}
+  </view>
+  <view class="box01" >
+    模式:  收费模式
+  </view>
+  <view class="box01">
+    金额:{{price}}元
+  </view>
+</view>
+
+<view wx:if="{{mode == 2}}">
+  <view class="box01">
+    容量：--
+  </view>
+  <view class="box01">
+    模式: <text class="box04">已停用！</text>
+  </view>
+  <view class="box01">
+    金额:  --元
+  </view>
+  <view class="box01">
+    <button class="box03">已停用</button>
+  </view>
+</view>
+
+<view class="box01" wx:if="{{mode != 2}}">
+  <button class="box02">立即取纸</button>
+</view>

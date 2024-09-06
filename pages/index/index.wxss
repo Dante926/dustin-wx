@@ -1,13 +1,18 @@
 /**index.wxss**/
-.page-container{
-  padding: 25rpx;
+page{  
+  height: 100%; 
 }
 
 .header-container{
-background-color: #0206d8;
-color: #ffffff;
-border-radius: 80rpx;
-padding: 32rpx 64rpx;
+width: auto;
+height: 350rpx;
+padding: 0rpx;
+}
+
+.header-container image {
+  width: 100%;
+  height: 350rpx;
+
 }
 
 .header-container .header-air{
@@ -16,80 +21,46 @@ justify-content: space-between;
 font-size: 28rpx;
 }
 
-.header-container .header-title{
-  display: flex;
-  justify-content: space-between;
-  font-size: 64rpx;
-  }
-
-  .header-container .header-ad{
-font-size: 28rpx;
-margin-top: 24rpx;
-justify-content: center;
-    }
-  .date-container{
-    /* background-color: chocolate;*/ 
-      margin-top: 36rpx;
-      display: grid;
-      justify-content: center;
-      grid-template-columns: repeat(auto-fill,300rpx);
-      grid-gap: 36rpx;
-    }
-    .date-container .data-card{
-      position: relative;
-      background-color: rgb(255, 255, 255);
-       height: 140rpx;
-      box-shadow: #d6d6d6 0 0 8rpx;
-      border-radius: 29rpx;
-      display: flex;
-      justify-content: space-between;
-    
-    }
-
-    .date-container .data-card2{
-      position: relative;
-      background-color: rgb(48, 9, 223);
-       height: 140rpx;
-      box-shadow: #d6d6d6 0 0 8rpx;
-      border-radius: 29rpx;
-      display: flex;
-      justify-content: space-between;
-    
-    }
-
-    .date-container .data-card .data-card_text{
-position: absolute;
-right: 32rpx;
-text-align: right;
-white-space: nowrap;
-    }
-
-    .date-container .data-card .data-card_icon{
-    height: 72rpx;
-    width: 72rpx;
-  left:32rpx;
-  top: 16rpx;  
-  }
-    
-    .date-container .data-card .data-card_title{
-      font-size: 28rpx;
-      color: #7f7f7f;
-    }
-
-    .date-container .data-card .data-card_value{
-    font-size: 52rpx;
+.header-ad{
+    width: 300rpx;
+    height: 280rpx;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
     font-weight: bold;
-    color: #7f7f7f;
-      }
+    font-family: 华文彩云;
+    }
 
-      .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 20;
-      }
-      
+.choose-container{
+  margin: 80rpx 70rpx 20rpx;
+      width: 600rpx;
+      height: 280rpx;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      box-shadow:10rpx 10rpx 0rpx 0rpx #b4b1b1;
+      border-radius: 50rpx;
+      border-width: 5rpx 0 0 2rpx ;
+      border-color: #000000;
+      border-style: solid;
+}
+
+.small{
+  width: 300rpx;
+  height: 100%;
+}
+
+.bg{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
+}
+
       .time {
         font-size: 24px;
         font-weight: bold;
+        text-align: center;
       }
