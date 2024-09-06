@@ -273,7 +273,8 @@ Page({
               app.globalData.UserPhone = this.data.UserPhone; //更新账户
               app.globalData.show = true; //修改登陆状态
               app.globalData.Flag = true; //修改刷新标记
-              app.globalData.Usermone = data[0].mone;
+              app.globalData.Mone = data[0].mone;
+              console.log(data[0].mone);
               app.globalData.Username = data[0].name;
 
               // 跳转至User页面
@@ -355,8 +356,12 @@ Page({
     }
   },
 
+  // 忘记密码提示
   forgetPower: function () {
-
+    wx.showToast({
+      title: '请联系管理员',
+      icon:'none'
+    })
   },
 
   onShow: function () {

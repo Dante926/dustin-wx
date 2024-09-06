@@ -8,8 +8,8 @@
 -->
   <view class="head-box">
     <button wx:if="{{login.show}}" open-type="chooseAvatar" class="avatar" bindchooseavatar="chooseAvatar">
-      <image class="head-img" src="/static/dabao.png" mode="widthFix"></image>
-    </button>
+      <image class="head-img" src="{{avatarUrl}}" mode="widthFix"></image>
+    </button> 
     <view class="tip" bindtap="chooseAvatar">{{login.show?'欢迎使用纸兄智能取纸机！':'尚未登录，点击登录'}}</view>
   </view>
   <!-- 第一部分列表 -->

@@ -23,7 +23,7 @@
       <input type="password" class="input" bindinput='getPower' auto-focus placeholder="请输入登录密码" />
     </view>
     <view class="forget" bindinput='forgetPower'>
-      <text>忘记密码?</text>
+      <text bindtap='forgetPower'>忘记密码?</text>
     </view>
   </view>
   <!-- 注册 -->

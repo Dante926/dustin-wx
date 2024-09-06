@@ -3,24 +3,25 @@ const app = getApp();
 // index.js
 Page({
   data: {
-      username: app.globalData.Username,//用户名
-      phoneNumber:app.globalData.UserPhone//手机号
+    username: app.globalData.Username, //用户名
+    phoneNumber: app.globalData.UserPhone, //手机号
+    avatarUrl: app.globalData.avatarUrl
   },
 
   /*页面显示生命周期函数 */
-onShow:function (){
+  onShow: function () {
+    this.setData({
+      username: app.globalData.Username, //用户名
+      phoneNumber: app.globalData.UserPhone, //手机号
+      avatarUrl: app.globalData.avatarUrl
+    })
 
-  this.setData({
-    username: app.globalData.Username,//用户名
-    phoneNumber:app.globalData.UserPhone//手机号
-  })
-
-},
+  },
 
   changeUsername: function () {
     // 处理修改用户名的逻辑
     // ...
-    app.Re_name(app.globalData.UserPhone,"噶大宝");
+    app.Re_name(app.globalData.UserPhone, "噶大宝");
   },
 
   changePassword: function () {

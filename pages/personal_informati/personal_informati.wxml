@@ -1,6 +1,6 @@
 <view class="container">
   <view class="avatar-wrap">
-    <image class="avatar-img" src="/static/dabao.png" mode="aspectFill"></image>
+    <image class="avatar-img" src="{{avatarUrl}}" mode="aspectFill"></image>
     <icon class="edit-icon" type="editor" size="30" color="#fff" bindtap="editAvatar"></icon>
   </view>
   <view class="user-info">

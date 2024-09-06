@@ -7,7 +7,7 @@ Page({
   data: {
     login: {
       show: app.globalData.show,
-      avatar: "/static/dabao.png", //头像地址
+      avatarUrl: '', //头像地址
     },
     UserPhone: app.globalData.UserPhone,
     localhost: app.globalData.localhost,
@@ -43,6 +43,7 @@ Page({
       })
     })
   },
+
   // 组织好后端需要的字段，并调用接口
   handleUserInfo(data) {
     const {
@@ -61,14 +62,22 @@ Page({
     // 调用接口维护本地登录态
   },
 
-  // 登录监听
+  // 获取头像监听 - Dante
   chooseAvatar(e) {
-    if (app.globalData.show == false) {
+    console.log(typeof (this.data.login.show));
+    if (this.data.login.show === false) {
+      console.log('1');
       wx.navigateTo({
         url: '/pages/logs/logs'
+      });
+    } else {
+      app.globalData.avatarUrl = e.detail.avatarUrl
+      this.setData({
+        avatarUrl: e.detail.avatarUrl
       })
     }
   },
+
   // 基本信息
   basicClick() {
     console.log('基本信息监听');
@@ -86,16 +95,17 @@ Page({
       })
     }
   },
+
   // 订单管理监听
   aboutClick() {
     console.log('订单管理监听');
-    if (app.globalData.show == true) {
+    if (app.globalData.show == true) { // 如果用户已登录
       app.globalData.order = null,
         app.get_order();
       wx.navigateTo({
         url: '/pages/order_information/order_information',
       })
-    } else {
+    } else { // 用户未登录
       wx.showModal({
         title: '请先登录',
         complete: (res) => {
@@ -107,6 +117,7 @@ Page({
     }
 
   },
+
   // 退出登录
   exitClick(e) {
     let that = this;
@@ -130,13 +141,13 @@ Page({
     } else {
       wx.navigateTo({
         url: '/pages/logs/logs'
-       });
-      this.setData({
+      });
+      /* this.setData({
         login: {
           //show: true,
           avatar: "/static/dabao.png",
         }
-      })
+      }) */
     }
   },
   Returnindx: function (e) {

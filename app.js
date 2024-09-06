@@ -189,6 +189,7 @@ App({
     });
 
   },
+  
   //启动订单信息写入
   Start_order: function (UserPhone) {
     wx.request({
