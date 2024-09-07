@@ -43,5 +43,5 @@
 </view>
 
 <view class="box01" wx:if="{{mode != 2}}">
-  <button class="box02">立即取纸</button>
+  <button bindtap="pickup" class="box02">立即取纸</button>
 </view>

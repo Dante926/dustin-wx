@@ -38,9 +38,6 @@ Page({
 
   // 账号登录监听
   getUser: debounce(function (e) {
-    console.log("登录账号监听");
-    console.log(e.detail);
-
     // 获取输入的数据
     var inputValue = e.detail.value.trim(); // 去掉首尾空格
 
@@ -65,8 +62,6 @@ Page({
   // 登录密码监听
   // 处理登录密码输入
   getPower: function (e) {
-    console.log("登录密码监听");
-    console.log(e.detail);
 
     // 获取输入的数据
     var inputValue = e.detail.value.trim(); // 去掉首尾空格
@@ -264,7 +259,6 @@ Page({
         // 登录请求接口
         axios('/logs/login', 'POST', params)
           .then(res => {
-            console.log(res.data);
             const {
               data
             } = res.data
@@ -274,9 +268,7 @@ Page({
               app.globalData.show = true; //修改登陆状态
               app.globalData.Flag = true; //修改刷新标记
               app.globalData.Mone = data[0].mone;
-              console.log(data[0].mone);
               app.globalData.Username = data[0].name;
-
               // 跳转至User页面
               wx.switchTab({
                 url: '/pages/User/User',
