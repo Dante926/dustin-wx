@@ -52,8 +52,17 @@ Page({
             axios('/pkup/confirm_pkup','POST',params)
             .then(res=>{// 请求成功
               console.log(res);
+              wx.showToast({
+                title: '取纸成功，请留意出纸状态~',
+                icon:'none',
+                success:()=>{
+                  console.log('取纸成功');
+                  this.onShow()
+                }
+              })
             })
             .catch(err=>{// 请求异常
+              console.log(err);
               wx.showToast({
                 title: '系统错误，请重试',
                 icon:'none'

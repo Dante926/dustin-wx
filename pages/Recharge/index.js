@@ -12,7 +12,7 @@ Page({
     activeIndex: 0, //默认选中第一个
     numArray: [5, 10, 20, 30, 50, 'm'], //充值金额的挡位选择
     date: [],
-    Mone:app.globalData.Mone,
+    Mone: app.globalData.Mone,
     Chose: 5, //选择充值得金额，默认20
     IputVal: 0, //自定义的金额
     UserPhone: app.globalData.UserPhone
@@ -78,7 +78,9 @@ Page({
     } else {
       wx.showToast({
         title: '请先登录',
+        icon: 'none'
       })
+      return;
     }
   },
 
