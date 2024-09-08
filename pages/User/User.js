@@ -100,8 +100,10 @@ Page({
   aboutClick() {
     console.log('订单管理监听');
     if (app.globalData.show == true) { // 如果用户已登录
-      app.globalData.order = null,
-        app.get_order();
+      /*       
+        app.globalData.order = null,
+        app.get_order(); 
+      */
       wx.navigateTo({
         url: '/pages/order_information/order_information',
       })
