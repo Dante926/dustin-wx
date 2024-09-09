@@ -12,7 +12,30 @@ Page({
     UserPhone: app.globalData.UserPhone,
     avatarUrl: '',
     localhost: app.globalData.localhost,
-    num: 20 //计数值
+    num: 20 ,//计数值
+
+    power:''
+  },
+
+  // 前往设备管理
+  toFaMa() {
+    if (app.globalData.show == true) { // 如果用户已登录
+      wx.navigateTo({
+        url: '/pages/facilitymanage/facilitymanage',
+      })
+    } else { // 用户未登录
+      wx.showModal({
+        title: '请先登录',
+        complete: (res) => {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/logs/logs',
+            })
+            return;
+          }
+        }
+      })
+    }
   },
 
   // 获取code、userInfo等信息
@@ -108,12 +131,14 @@ Page({
         title: '请先登录',
         complete: (res) => {
           if (res.confirm) {
-
+            wx.navigateTo({
+              url: '/pages/logs/logs',
+            })
+            return;
           }
         }
       })
     }
-
   },
 
   // 退出登录
@@ -132,8 +157,14 @@ Page({
               that.setData({
                 login: {
                   show: false,
-                }
+                },
+                power:0
               })
+              wx.showToast({
+                title: '退出成功',
+                icon:'none'
+              })
+              return;
           }
         }
       })
@@ -141,12 +172,6 @@ Page({
       wx.navigateTo({
         url: '/pages/logs/logs'
       });
-      /* this.setData({
-        login: {
-          //show: true,
-          avatar: "/static/dabao.png",
-        }
-      }) */
     }
   },
 
@@ -184,7 +209,9 @@ Page({
 
   onShow() {
     this.setData({
-      avatarUrl: app.globalData.avatarUrl
+      avatarUrl: app.globalData.avatarUrl,
+      power:app.globalData.power
     })
+    console.log(this.data.power);
   }
 })

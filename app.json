@@ -8,7 +8,8 @@
     "pages/order_information/order_information",
     "pages/personal_informati/personal_informati",
     "pages/User/User",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/facilitymanage/facilitymanage"
   ],
   "window": {
     "backgroundTextStyle": "light",

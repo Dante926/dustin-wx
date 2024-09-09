@@ -181,6 +181,7 @@ Page({
         const {
           data
         } = res.data
+        console.log(data[0]);
         if (data[0].pickup_id === pickup_id) {
           this.setData({
             pickup_id,
@@ -631,15 +632,17 @@ Page({
   onShow: async function () {
     // Dante-----------------------------
     // 设置用户权限
+    console.log(app.globalData);
     this.setData({
       power: app.globalData.power,
       manage_eq_id: app.globalData.manage_eq_id
     })
-    console.log(app.globalData.manage_eq_id);
     if (app.globalData.power != 2) { // 如果不是超级管理员，只能管理对应的机器
       this.setData({
         pickup_id: app.globalData.manage_eq_id
       })
+      this.pulleqstatus(this.data.pickup_id) // 获取当前对应id设备状态
+    }else{
       this.pulleqstatus(this.data.pickup_id) // 获取当前对应id设备状态
     }
     //  End -----------------------------
