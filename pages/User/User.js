@@ -10,6 +10,7 @@ Page({
       avatarUrl: '', //头像地址
     },
     UserPhone: app.globalData.UserPhone,
+    avatarUrl: '',
     localhost: app.globalData.localhost,
     num: 20 //计数值
   },
@@ -64,9 +65,7 @@ Page({
 
   // 获取头像监听 - Dante
   chooseAvatar(e) {
-    console.log(typeof (this.data.login.show));
     if (this.data.login.show === false) {
-      console.log('1');
       wx.navigateTo({
         url: '/pages/logs/logs'
       });
@@ -80,8 +79,6 @@ Page({
 
   // 基本信息
   basicClick() {
-    console.log('基本信息监听');
-
     if (app.globalData.show == true) {
       wx.navigateTo({
         url: '/pages/personal_informati/personal_informati',
@@ -98,7 +95,6 @@ Page({
 
   // 订单管理监听
   aboutClick() {
-    console.log('订单管理监听');
     if (app.globalData.show == true) { // 如果用户已登录
       /*       
         app.globalData.order = null,
@@ -152,11 +148,13 @@ Page({
       }) */
     }
   },
+
   Returnindx: function (e) {
     wx.navigateTo({
       url: '/pages/index/index',
     });
   },
+
   //  Returnindx(){
   //     wx.switchTab({
   //       url: '/pages/index/index'
@@ -166,8 +164,10 @@ Page({
     this.setData({
       login: {
         show: app.globalData.show,
+        avatarUrl: app.globalData.avatarUrl
       },
       UserPhone: app.globalData.UserPhone
+
     })
 
   },
@@ -180,4 +180,10 @@ Page({
       this.getData();
     }, 1000); // 每隔5秒重新加载一次页面
   },
+
+  onShow() {
+    this.setData({
+      avatarUrl: app.globalData.avatarUrl
+    })
+  }
 })

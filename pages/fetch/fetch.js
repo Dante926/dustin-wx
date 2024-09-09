@@ -57,6 +57,7 @@ Page({
                 icon:'none',
                 success:()=>{
                   console.log('取纸成功');
+                  app.globalData.Mone -= params.price
                   this.onShow()
                 }
               })
