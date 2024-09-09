@@ -1,12 +1,12 @@
 /**index.wxss**/
-page{  
-  height: 100%; 
+page {
+  height: 100%;
 }
 
-.header-container{
-width: auto;
-height: 350rpx;
-padding: 0rpx;
+.header-container {
+  width: auto;
+  height: 350rpx;
+  padding: 0rpx;
 }
 
 .header-container image {
@@ -15,52 +15,104 @@ padding: 0rpx;
 
 }
 
-.header-container .header-air{
-display: flex;
-justify-content: space-between;
-font-size: 28rpx;
+.header-container .header-air {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
 }
 
-.header-ad{
-    width: 300rpx;
-    height: 280rpx;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
-    font-weight: bold;
-    font-family: 华文彩云;
-    }
+.header-ad {
+  width: 300rpx;
+  height: 280rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: bold;
+  font-family: 华文彩云;
+}
 
-.choose-container{
+.choose-container {
   margin: 80rpx 70rpx 20rpx;
-      width: 600rpx;
-      height: 280rpx;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      box-shadow:10rpx 10rpx 0rpx 0rpx #b4b1b1;
-      border-radius: 50rpx;
-      border-width: 5rpx 0 0 2rpx ;
-      border-color: #000000;
-      border-style: solid;
+  width: 600rpx;
+  height: 280rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  box-shadow: 10rpx 10rpx 0rpx 0rpx #b4b1b1;
+  border-radius: 50rpx;
+  border-width: 5rpx 0 0 2rpx;
+  border-color: #000000;
+  border-style: solid;
 }
 
-.small{
+.small {
   width: 300rpx;
   height: 100%;
 }
 
-.bg{
+.bg {
   width: 100%;
   height: 100%;
   position: fixed;
   z-index: -1;
 }
 
-      .time {
-        font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-      }
+.time {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Dante ----------------------------------------- */
+.content {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+  /* 添加内边距 */
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* picker样式 */
+.picker {
+  display: inline-block;
+  width: 100%;
+}
+
+/* 可点击区域样式 */
+.clickable {
+  border: 1px solid #4ce6ab;
+  /* 添加蓝色边框 */
+  border-radius: 4px;
+  /* 边框圆角 */
+  padding: 10px;
+  /* 内边距 */
+  background-color: #fff;
+  /* 背景色 */
+}
+
+.buttons {
+  background-color: #4ce6ab;
+}
+
+/* End ----------------------------------------- */

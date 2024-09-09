@@ -128,6 +128,7 @@ Page({
             app.globalData.show = false,
               app.globalData.UserPhone = 0,
               app.globalData.Usermone = 0,
+              app.globalData.power = 0,
               that.setData({
                 login: {
                   show: false,

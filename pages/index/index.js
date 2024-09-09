@@ -1,6 +1,9 @@
 // index.js
 // 获取应用实例
 const app = getApp()
+import {
+  axios
+} from '../../utils/axios'
 /* const {connect}  =require('../../utils/mqtt')
 const mqttHost='www.litaihua.site'//mqtt服务器域名
 const mqttPort=8084//mqtt端口号
@@ -11,6 +14,34 @@ const mpPuTopic = deviceSubTopic;//收 */
 
 Page({
   data: {
+    // Dante -----------------------
+
+    // 用户权限变量
+    power: '',
+
+    // 取纸设备号
+    pickup_id: 1,
+    pikupoptions: [1, 2],
+
+    //是否启用取纸机
+    paperMachineEnabled: false, //默认关闭
+
+    // 收费模式
+    chargeModeEnabled: false, //默认关闭
+
+    // 收费金额
+    mone: 1,
+    moneOptions: [1, 2, 3, 4],
+
+    // 出纸频率
+    frequency: 3,
+    frequencyOptions: [3, 6, 9],
+
+    // 剩余容量
+    total: '',
+
+    //End---------------------------
+
     localhost: app.globalData.localhost,
     currentTime: '', //实时时间
     current: 3,
@@ -47,6 +78,142 @@ Page({
     Timerx_Chose: false,
     TimeCount: 0
   },
+
+  // Dante ----------------------------------
+
+  // 机器容量补给
+
+  // 获取当前设备状态
+  pulleqstatus(pickup_id) {
+    console.log(pickup_id);
+    const params = {
+      pickup_id,
+    }
+    axios('/equipment/pulleqstatus', 'POST', params)
+      .then(res => {
+        const {
+          data
+        } = res.data
+        console.log(data);
+        if (data[0].pickup_id === pickup_id) {
+          this.setData({
+            pickup_id,
+            paperMachineEnabled: data[0].ispay_flag === 2 ? false : true,
+            chargeModeEnabled: data[0].ispay_flag === 1 ? true : false,
+            mone: data[0].set_mone,
+            frequency: data[0].paper_fre,
+            total: data[0].total
+          })
+          if (this.data.chargeModeEnabled === false) {
+            this.setData({
+              mone: 0
+            })
+          }
+        }
+      })
+      .catch(err => {
+        wx.showToast({
+          title: '获取数据失败',
+          icon: 'none',
+          success: () => {
+
+          }
+        })
+        return;
+      })
+  },
+
+  // 取纸设备
+  handleEqChange: function (e) {
+    this.setData({
+      pickup_id: this.data.pikupoptions[e.detail.value]
+    });
+    this.pulleqstatus(this.data.pickup_id)
+  },
+
+  // 启用取纸机
+  handlePaperMachineChange: function (e) {
+    this.setData({
+      paperMachineEnabled: e.detail.value
+    });
+  },
+
+  //改变收费模式
+  handleChargeModeChange: function (e) {
+    if (this.data.paperMachineEnabled === true) { // 判断是否启用了机器
+      if (this.data.handleMoneChange === true) { // 判断是否为收费模式
+        this.setData({
+          mone: e.detail.value
+        });
+      } else {
+        this.setData({
+          chargeModeEnabled:false,
+          mone: 0
+        });
+      }
+      return;
+    } else {
+      wx.showModal({
+        title: '请先开启设备',
+        content: '请确认开启设备',
+        complete: (res) => {
+          if (res.cancel) {
+            this.setData({
+              paperMachineEnabled: false,
+              chargeModeEnabled: false
+            })
+            return;
+          }
+          if (res.confirm) {
+            this.setData({
+              paperMachineEnabled: true
+            })
+          }
+        }
+      })
+    }
+  },
+
+  // 选择金额改变
+  handleMoneChange: function (e) {
+    console.log('1');
+    if (this.data.chargeModeEnabled === false) {
+      wx.showModal({
+        title: '请先开启收费模式',
+        content: '确认开启收费模式',
+        complete: (res) => {
+          if (res.cancel) {
+            this.setData({
+              mone: 0
+            })
+            return;
+          }
+          if (res.confirm) {
+            this.setData({
+              paperMachineEnabled: true,
+              chargeModeEnabled: true,
+              mone: this.data.moneOptions[e.detail.value]
+            })
+          }
+        }
+      })
+    } else {
+      this.setData({
+        mone: this.data.moneOptions[e.detail.value]
+      });
+    }
+  },
+
+  // 出纸频率改变
+  handleFrequencyChange: function (e) {
+    this.setData({
+      frequency: this.data.frequencyOptions[e.detail.value]
+    });
+  },
+
+
+  //  End -----------------------------------
+
   /*COM选择开始*/
   onCOM1Change: function (e) { //COM1选择
     const that = this
@@ -373,6 +540,14 @@ Page({
   },
   // MQTT数据上传接收处理
   onShow: async function () {
+    // Dante-----------------------------
+    // 设置用户权限
+    this.setData({
+      power: app.globalData.power
+    })
+    this.pulleqstatus(this.data.pickup_id)
+    //  End -----------------------------
+
     const that = this;
     that.setData({
       client: connect(`wxs://${mqttHost}:${mqttPort}/mqtt`)

@@ -1,38 +1,91 @@
 <!--index.wxml-->
-<image class="bg" mode="scaleToFill" src="../../images/background1.jpg"></image>
-<view class="header-air">
-  <view class="time">{{ currentTime }}</view>
-</view>
-
-<view class="header-container">
-  <swiper class="header-container" indicator-dots="{{3}}" autoplay="{{true}}" interval="{{5000}}"> 
-    <swiper-item>
-      <image class="image" src="../../images/ads1.jpg"></image> 
-    </swiper-item>
-
-    <swiper-item>
-      <image class="image" src="../../images/ads2.png"></image> 
-    </swiper-item>
-
-    <swiper-item>
-      <image class="image" src="../../images/ads3.jpg"></image> 
-    </swiper-item>
-  </swiper>
-</view>
-
-<view class="choose-container"  bindtap="Jump">
-
-  <view class="header-ad">
-    <image class="small" src="../../images/1.png"></image>
+<view class="userbody" wx:if="{{power===0?true:false}}">
+  <image class="bg" mode="scaleToFill" src="../../images/background1.jpg"></image>
+  <view class="header-air">
+    <view class="time">{{ currentTime }}</view>
   </view>
-  <view class="header-ad">取纸机01</view>
-</view>
 
-<view class="choose-container" bindtap="open">
-  <view class="header-ad">
-    <image class="small" src="../../images/4.png"></image>
+  <view class="header-container">
+    <swiper class="header-container" indicator-dots="{{3}}" autoplay="{{true}}" interval="{{5000}}">
+      <swiper-item>
+        <image class="image" src="../../images/ads1.jpg"></image>
+      </swiper-item>
+
+      <swiper-item>
+        <image class="image" src="../../images/ads2.png"></image>
+      </swiper-item>
+
+      <swiper-item>
+        <image class="image" src="../../images/ads3.jpg"></image>
+      </swiper-item>
+    </swiper>
   </view>
-  <view class="header-ad">取纸机02</view> 
+
+  <view class="choose-container" bindtap="Jump">
+
+    <view class="header-ad">
+      <image class="small" src="../../images/1.png"></image>
+    </view>
+    <view class="header-ad">取纸机01</view>
+  </view>
+
+  <view class="choose-container" bindtap="open">
+    <view class="header-ad">
+      <image class="small" src="../../images/4.png"></image>
+    </view>
+    <view class="header-ad">取纸机02</view>
+  </view>
 </view>
 
+<!-- 管理员管理机器界面 -->
+<view wx:else="">
+  <view class="container">
+    <view class="header">纸兄管理</view>
+    <view class="content">
+      <!-- 取纸设备 -->
+      <view class="section ">
+        <picker mode="selector" range="{{pikupoptions}}" bindchange="handleEqChange">
+          <view class="picker clickable">
+            取纸设备: {{pickup_id}}
+          </view>
+        </picker>
+      </view>
+      <!-- 是否启用取纸机 -->
+      <view class="section">
+        <text>启用设备:{{paperMachineEnabled===false?'关闭':'启用'}}</text>
+        <switch checked="{{paperMachineEnabled}}" bindchange="handlePaperMachineChange" color="#007AFF" />
+      </view>
+      <!-- 开启收费模式 -->
+      <view class="section">
+        <text>收费模式:{{chargeModeEnabled===false?'关闭':'开启'}}</text>
+        <switch checked="{{chargeModeEnabled}}" bindchange="handleChargeModeChange" color="#007AFF" />
+      </view>
+      <!-- 收费模式下选择收费金额 -->
+      <view class="section">
+        <picker mode="selector" range="{{moneOptions}}" bindchange="handleMoneChange">
+          <view class="picker clickable">
+            选择金额: {{mone}}
+          </view>
+        </picker>
+      </view>
+      <!-- 出纸频率 -->
+      <view class="section">
+        <picker mode="selector" range="{{frequencyOptions}}" bindchange="handleFrequencyChange">
+          <view class="picker clickable">
+            出纸频率: {{frequency}}
+          </view>
+        </picker>
+      </view>
 
+      <view class="section clickable">
+      设备当前容量剩余：{{total?total:'无数据'}}/50
+      </view>
+
+      <view class="buttons">
+        <button bindtap="handleSupply">补给</button>
+        <button bindtap="handleSave">保存</button>
+      </view>
+
+    </view>
+  </view>
+</view>
