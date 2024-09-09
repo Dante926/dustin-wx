@@ -269,6 +269,9 @@ Page({
               app.globalData.Flag = true; //修改刷新标记
               app.globalData.Mone = data[0].mone;
               app.globalData.Username = data[0].name;
+              app.globalData.power = data[0].power
+              console.log(app.globalData.power);
+              console.log(app.globalData);
               // 跳转至User页面
               wx.switchTab({
                 url: '/pages/User/User',
@@ -364,6 +367,7 @@ Page({
       })
     }
   },
+
   onUnload: function () {
     clearInterval(this.timer); // 清除计时器
   }

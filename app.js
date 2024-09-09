@@ -24,6 +24,7 @@ App({
     show: false, //登录状态
     Flag: false, //页面是否需要更新标志
     Usermone: 0, //余额
+    power:0,//权限
     year: 0,
     month: 0,
     day: 0,
