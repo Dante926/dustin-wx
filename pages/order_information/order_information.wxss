@@ -41,6 +41,11 @@
   margin-top: -45rpx;
 }
 
+.box3-text {
+  color: #757575;
+  font-size: 36rpx;
+}
+
 .t1 {
   height: 400px;
   width: 100px;

@@ -16,6 +16,7 @@ Page({
     const params = {
       power:app.globalData.power,
       phone: app.globalData.UserPhone,
+      manage_eq_id:app.globalData.manage_eq_id
     };
     axios('/pkup/pullorder', 'POST', params)
       .then(res => {

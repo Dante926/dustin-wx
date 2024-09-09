@@ -210,7 +210,7 @@ Page({
   handleEqChange: function (e) {
     if (this.data.power != 2) {
       wx.showToast({
-        title: '你只可管理设备0' + app.globalData.manage_eq_id,
+        title: '你只可管理设备0' + app.globalData.manage_eq_id+'!',
         icon: 'none'
       })
       this.setData({
