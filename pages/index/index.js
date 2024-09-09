@@ -82,6 +82,44 @@ Page({
   // Dante ----------------------------------
 
   // 机器容量补给
+  handleSupply(){
+    wx.showModal({
+      title: '取纸机01容量补给',
+      content: '设备01剩余容量'+this.data.total+',是否补给',
+      complete: (res) => {
+        if (res.cancel) {// 取消补给提示
+          wx.showToast({
+            title: '取消补给',
+            icon:'none'
+          })
+          return;
+        }
+        if (res.confirm) {// 确认补给
+          const params = {
+            pickup_id:this.data.pickup_id,
+            total:this.data.total
+          }
+          axios('/equipment/supply','POST',params)
+          .then(res=>{
+            const {message} = res.data
+            wx.showToast({
+              title: '补给成功,'+message,
+              icon:'none'
+            })
+            this.pulleqstatus(this.data.pickup_id)
+            return;
+          })
+          .catch(err=>{// 系统错误
+            wx.showToast({
+              title: '系统出错，请重试',
+              icon:'none'
+            })
+            return;
+          })
+        }
+      }
+    })
+  },
 
   // 获取当前设备状态
   pulleqstatus(pickup_id) {

@@ -20,64 +20,73 @@ Page({
   },
   // 取纸管理方法
   pickup() {
-    if (app.globalData.show === false) { // 如果是未登录状态，点击取纸后显示登录弹窗
-      wx.showModal({
-        title: '用户未登录',
-        content: '跳转至登录页面',
-        complete: (res) => {
-          if (res.cancel) {
-            return;
-          }
-          if (res.confirm) {
-            wx.navigateTo({
-              url: '../logs/logs',
-            })
-          }
-        }
-      })
-    } else if (app.globalData.show === true) { // 登录状态下正常取纸逻辑
-      wx.showModal({
-        title: '确认操作',
-        content: '是否确认取纸',
-        complete: (res) => {
-          if (res.cancel) {// 取消取纸
-            return;
-          }
-          if (res.confirm) {// 确认取纸
-            const params={
-              phone:app.globalData.UserPhone,
-              pickup_id:this.data.pickup_id,
-              price:this.data.price
-            }
-            axios('/pkup/confirm_pkup','POST',params)
-            .then(res=>{// 请求成功
-              console.log(res);
-              wx.showToast({
-                title: '取纸成功，请留意出纸状态~',
-                icon:'none',
-                success:()=>{
-                  console.log('取纸成功');
-                  app.globalData.Mone -= params.price
-                  this.onShow()
-                }
-              })
-            })
-            .catch(err=>{// 请求异常
-              console.log(err);
-              wx.showToast({
-                title: '系统错误，请重试',
-                icon:'none'
-              })
-            })
-          }
-        }
-      })
-    } else { // 程序错误警告
+    if (app.globalData.Mone < this.data.price) {
       wx.showToast({
-        title: '操作出错',
+        title: '您的余额不足，请前往充值',
         icon: 'none'
       })
+      return
+    } else {
+      if (app.globalData.show === false) { // 如果是未登录状态，点击取纸后显示登录弹窗
+        wx.showModal({
+          title: '用户未登录',
+          content: '跳转至登录页面',
+          complete: (res) => {
+            if (res.cancel) {
+              return;
+            }
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '../logs/logs',
+              })
+            }
+          }
+        })
+      } else if (app.globalData.show === true) { // 登录状态下正常取纸逻辑
+        wx.showModal({
+          title: '确认操作',
+          content: '是否确认取纸',
+          complete: (res) => {
+            if (res.cancel) { // 取消取纸
+              return;
+            }
+            if (res.confirm) { // 确认取纸
+              const params = {
+                phone: app.globalData.UserPhone,
+                pickup_id: this.data.pickup_id,
+                price: this.data.price
+              }
+              axios('/pkup/confirm_pkup', 'POST', params)
+                .then(res => { // 请求成功
+                  console.log(res);
+                  wx.showToast({
+                    title: '取纸成功，请留意出纸状态~',
+                    icon: 'none',
+                    success: () => {
+                      console.log('取纸成功');
+                      app.globalData.Mone -= params.price
+                      this.onShow()
+                    }
+                  })
+                })
+                .catch(err => { // 请求异常
+                  console.log(err);
+                  wx.showToast({
+                    title: '系统错误，请重试',
+                    icon: 'none'
+                  })
+                })
+            }
+          }
+        })
+      } else { // 程序错误警告
+        wx.showToast({
+          title: '操作出错',
+          icon: 'none'
+        })
+      }
     }
+
   },
 
   onShow: function () {
