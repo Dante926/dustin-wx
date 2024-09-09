@@ -81,41 +81,89 @@ Page({
 
   // Dante ----------------------------------
 
-  // 机器容量补给
-  handleSupply(){
+  // 更改机器状态
+  handleSave() {
     wx.showModal({
-      title: '取纸机01容量补给',
-      content: '设备01剩余容量'+this.data.total+',是否补给',
+      title: '更改机器状态',
+      content: '是否更改机器0' + this.data.pickup_id + '状态',
       complete: (res) => {
-        if (res.cancel) {// 取消补给提示
+        if (res.cancel) { // 取消更改
           wx.showToast({
-            title: '取消补给',
-            icon:'none'
+            title: '取消更改',
+            icon: 'none'
           })
           return;
         }
-        if (res.confirm) {// 确认补给
+        if (res.confirm) {
           const params = {
-            pickup_id:this.data.pickup_id,
-            total:this.data.total
+            pickup_id: this.data.pickup_id,
+            ispay_flag: this.data.paperMachineEnabled === false ? 2 : (this.data.chargeModeEnabled === false ? 0 : 1),
+            set_mone: this.data.mone,
+            paper_fre: this.data.frequency,
           }
-          axios('/equipment/supply','POST',params)
-          .then(res=>{
-            const {message} = res.data
-            wx.showToast({
-              title: '补给成功,'+message,
-              icon:'none'
+          axios('/equipment/changestatus', 'POST', params)
+            .then(res => {
+              console.log(res);
+              const {
+                message
+              } = res.data
+              if (message === 'Success') {
+                wx.showToast({
+                  title: '设备状态修改成功',
+                  icon: 'none'
+                })
+                this.pulleqstatus(this.data.pickup_id);
+                return;
+              } else {
+                wx.showToast({
+                  title: '修改设备状态失败，请重试',
+                  icon: 'none'
+                })
+                return;
+              }
             })
-            this.pulleqstatus(this.data.pickup_id)
-            return;
+        }
+      }
+    })
+  },
+
+  // 机器容量补给
+  handleSupply() {
+    wx.showModal({
+      title: '取纸机01容量补给',
+      content: '设备01剩余容量' + this.data.total + ',是否补给',
+      complete: (res) => {
+        if (res.cancel) { // 取消补给提示
+          wx.showToast({
+            title: '取消补给',
+            icon: 'none'
           })
-          .catch(err=>{// 系统错误
-            wx.showToast({
-              title: '系统出错，请重试',
-              icon:'none'
+          return;
+        }
+        if (res.confirm) { // 确认补给
+          const params = {
+            pickup_id: this.data.pickup_id,
+            total: this.data.total
+          }
+          axios('/equipment/supply', 'POST', params)
+            .then(res => {
+              const {
+                message
+              } = res.data
+              wx.showToast({
+                title: '补给成功,' + message,
+                icon: 'none'
+              })
+              this.pulleqstatus(this.data.pickup_id)
+              return;
             })
-            return;
-          })
+            .catch(err => { // 系统错误
+              wx.showToast({
+                title: '系统出错，请重试',
+                icon: 'none'
+              })
+              return;
+            })
         }
       }
     })
@@ -123,7 +171,6 @@ Page({
 
   // 获取当前设备状态
   pulleqstatus(pickup_id) {
-    console.log(pickup_id);
     const params = {
       pickup_id,
     }
@@ -132,7 +179,6 @@ Page({
         const {
           data
         } = res.data
-        console.log(data);
         if (data[0].pickup_id === pickup_id) {
           this.setData({
             pickup_id,
@@ -149,19 +195,16 @@ Page({
           }
         }
       })
-      .catch(err => {
+      .catch(err => { // 请求错误
         wx.showToast({
           title: '获取数据失败',
           icon: 'none',
-          success: () => {
-
-          }
         })
         return;
       })
   },
 
-  // 取纸设备
+  // 切换当前取纸设备
   handleEqChange: function (e) {
     this.setData({
       pickup_id: this.data.pikupoptions[e.detail.value]
@@ -180,15 +223,15 @@ Page({
   handleChargeModeChange: function (e) {
     if (this.data.paperMachineEnabled === true) { // 判断是否启用了机器
       this.setData({
-        chargeModeEnabled:e.detail.value
+        chargeModeEnabled: e.detail.value
       })
-      if(this.data.chargeModeEnabled === false){
+      if (this.data.chargeModeEnabled === false) {
         this.setData({
-          mone:0
+          mone: 0
         })
       }
       return;
-    } else {// 如果未启用机器则先提醒启用机器
+    } else { // 如果未启用机器则先提醒启用机器
       wx.showModal({
         title: '请先开启设备',
         content: '请确认开启设备',
@@ -212,18 +255,18 @@ Page({
 
   // 选择金额改变
   handleMoneChange: function (e) {
-    if (this.data.chargeModeEnabled === false) {// 如果当前机器不是收费状态
-      wx.showModal({// 提示是否开启收费状态
+    if (this.data.chargeModeEnabled === false) { // 如果当前机器不是收费状态
+      wx.showModal({ // 提示是否开启收费状态
         title: '请先开启收费模式',
         content: '确认开启收费模式',
         complete: (res) => {
-          if (res.cancel) {// 不开启
+          if (res.cancel) { // 不开启
             this.setData({
               mone: 0
             })
             return;
           }
-          if (res.confirm) {// 开启
+          if (res.confirm) { // 开启
             this.setData({
               paperMachineEnabled: true,
               chargeModeEnabled: true,

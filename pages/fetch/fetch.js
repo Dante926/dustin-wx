@@ -86,7 +86,6 @@ Page({
         })
       }
     }
-
   },
 
   onShow: function () {
