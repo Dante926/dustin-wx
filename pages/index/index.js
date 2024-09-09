@@ -141,18 +141,16 @@ Page({
   //改变收费模式
   handleChargeModeChange: function (e) {
     if (this.data.paperMachineEnabled === true) { // 判断是否启用了机器
-      if (this.data.handleMoneChange === true) { // 判断是否为收费模式
+      this.setData({
+        chargeModeEnabled:e.detail.value
+      })
+      if(this.data.chargeModeEnabled === false){
         this.setData({
-          mone: e.detail.value
-        });
-      } else {
-        this.setData({
-          chargeModeEnabled:false,
-          mone: 0
-        });
+          mone:0
+        })
       }
       return;
-    } else {
+    } else {// 如果未启用机器则先提醒启用机器
       wx.showModal({
         title: '请先开启设备',
         content: '请确认开启设备',
@@ -176,19 +174,18 @@ Page({
 
   // 选择金额改变
   handleMoneChange: function (e) {
-    console.log('1');
-    if (this.data.chargeModeEnabled === false) {
-      wx.showModal({
+    if (this.data.chargeModeEnabled === false) {// 如果当前机器不是收费状态
+      wx.showModal({// 提示是否开启收费状态
         title: '请先开启收费模式',
         content: '确认开启收费模式',
         complete: (res) => {
-          if (res.cancel) {
+          if (res.cancel) {// 不开启
             this.setData({
               mone: 0
             })
             return;
           }
-          if (res.confirm) {
+          if (res.confirm) {// 开启
             this.setData({
               paperMachineEnabled: true,
               chargeModeEnabled: true,
