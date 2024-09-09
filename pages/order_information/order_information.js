@@ -14,6 +14,7 @@ Page({
   onShow: function () {
     console.log(app.globalData);
     const params = {
+      power:app.globalData.power,
       phone: app.globalData.UserPhone,
     };
     axios('/pkup/pullorder', 'POST', params)
