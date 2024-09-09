@@ -15,6 +15,8 @@ const mpPuTopic = deviceSubTopic;//收 */
 Page({
   data: {
     // Dante -----------------------
+    // 可管理设备号
+    manage_eq_id: '',
 
     // 用户权限变量
     power: '',
@@ -206,6 +208,16 @@ Page({
 
   // 切换当前取纸设备
   handleEqChange: function (e) {
+    if (this.data.power != 2) {
+      wx.showToast({
+        title: '你只可管理设备0' + app.globalData.manage_eq_id,
+        icon: 'none'
+      })
+      this.setData({
+        pickup_id: app.globalData.manage_eq_id
+      })
+      return;
+    }
     this.setData({
       pickup_id: this.data.pikupoptions[e.detail.value]
     });
@@ -288,7 +300,6 @@ Page({
       frequency: this.data.frequencyOptions[e.detail.value]
     });
   },
-
 
   //  End -----------------------------------
 
@@ -614,16 +625,23 @@ Page({
     });
   },
   onLoad() {
-
   },
+
   // MQTT数据上传接收处理
   onShow: async function () {
     // Dante-----------------------------
     // 设置用户权限
     this.setData({
-      power: app.globalData.power
+      power: app.globalData.power,
+      manage_eq_id: app.globalData.manage_eq_id
     })
-    this.pulleqstatus(this.data.pickup_id)
+    console.log(app.globalData.manage_eq_id);
+    if (app.globalData.power != 2) { // 如果不是超级管理员，只能管理对应的机器
+      this.setData({
+        pickup_id: app.globalData.manage_eq_id
+      })
+      this.pulleqstatus(this.data.pickup_id) // 获取当前对应id设备状态
+    }
     //  End -----------------------------
 
     const that = this;
@@ -687,6 +705,7 @@ Page({
       await processMessage(topic, message);
     });
   },
+
   /*获取实时时间 */
   getCurrentTime: function () { //获取并更新时间函数
 

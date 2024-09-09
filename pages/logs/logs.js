@@ -270,8 +270,8 @@ Page({
               app.globalData.Mone = data[0].mone;
               app.globalData.Username = data[0].name;
               app.globalData.power = data[0].power
-              console.log(app.globalData.power);
-              console.log(app.globalData);
+              app.globalData.manage_eq_id =data[0].manage_eq_id
+              console.log(app.globalData.manage_eq_id);
               // 跳转至User页面
               wx.switchTab({
                 url: '/pages/User/User',
@@ -355,7 +355,7 @@ Page({
   forgetPower: function () {
     wx.showToast({
       title: '请联系管理员',
-      icon:'none'
+      icon: 'none'
     })
   },
 

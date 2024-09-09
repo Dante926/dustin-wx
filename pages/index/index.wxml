@@ -78,7 +78,7 @@
       </view>
 
       <view class="section clickable">
-      设备容量剩余：{{total?total:'无数据'}}/50
+        设备容量剩余：{{total?total:'无数据'}}/50
       </view>
 
       <view class="buttons">

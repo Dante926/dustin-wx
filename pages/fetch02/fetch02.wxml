@@ -38,7 +38,7 @@
     金额:  --元
   </view>
   <view class="box01">
-    <button class="box03">已停用</button>
+    <button bindtap='pickupnone' class="box03">已停用</button>
   </view>
 </view>
 
