@@ -39,3 +39,29 @@
     </view>
   </view>
 </view>
+
+<view wx:else="{{power === 2 ? true : false}}">
+  <view class="super-container">
+    <view class="super-header">
+      <text class="super-header-text">管理租赁</text>
+    </view>
+    <view class="super-application-list">
+      <block wx:for="{{applications}}" wx:key="id">
+        <view class="super-application-item">
+          <view class="super-left-section">
+            <image class="super-avatar" src="{{item.avatarUrl}}" mode="aspectFill" />
+            <view class="super-info">
+              <text class="super-nickname">{{item.nickname}}</text>
+              <text class="super-phone">{{item.phone}}</text>
+              <text class="super-balance">剩余金额: {{item.balance}}</text>
+            </view>
+          </view>
+          <view class="super-right-section">
+            <button class="super-agree-btn" data-id="{{item.id}}" bindtap="onAgree">同意</button>
+            <button class="super-reject-btn" data-id="{{item.id}}" bindtap="onReject">拒绝</button>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

@@ -10,7 +10,25 @@ Page({
     deviceIndex: 0,
     nickname: '',
     amount: 100, // 这里支付金额设置为固定的100
-    power: ''
+    power: '',
+    // 管理员管理租赁-------------------------
+    applications: [
+      {
+        id: 1,
+        avatarUrl: '../../images/用户.png',
+        nickname: '用户1',
+        phone: '13800000001',
+        balance: '100.00'
+      },
+      {
+        id: 2,
+        avatarUrl: '../../images/用户.png',
+        nickname: '用户2',
+        phone: '13800000002',
+        balance: '200.00'
+      }
+    ] // 初始化为空数组
+    // End ----------------------------------
   },
 
   // 申请租赁JS----------------------------
@@ -68,7 +86,7 @@ Page({
       } else {
         wx.showModal({
           title: '确认申请',
-          content: '是否确认申请租赁机器0' + Number(this.data.deviceIndex) + 1,
+          content: '是否确认申请租赁机器0' + (Number(this.data.deviceIndex) + 1),
           complete: (res) => {
             if (res.cancel) { // 取消申请租赁
               return;
@@ -87,11 +105,9 @@ Page({
                     content: res.data.message,
                     complete: (res) => {
                       if (res.cancel) {
-                        this.hideModal();
                         return;
                       }
                       if (res.confirm) {
-                        this.hideModal();
                         return;
                       }
                     }
@@ -111,6 +127,10 @@ Page({
   },
 
   // 申请租赁Ene----------------------------
+
+  // 管理员管理租赁-------------------------
+
+  // End ----------------------------------
 
   onShow() {
     this.setData({
