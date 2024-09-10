@@ -9,7 +9,8 @@
     "pages/personal_informati/personal_informati",
     "pages/User/User",
     "pages/logs/logs",
-    "pages/facilitymanage/facilitymanage"
+    "pages/facilitymanage/facilitymanage",
+    "pages/application/application"
   ],
   "window": {
     "backgroundTextStyle": "light",

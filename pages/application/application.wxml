@@ -1,0 +1,40 @@
+<!-- 页面结构 -->
+<view>
+  <view class="container">
+    <view class="description">
+      <!-- 申请租赁设备的文本描述 -->
+      <text>这里是申请租赁设备的文本描述。请填写下面的表单以完成申请。</text>
+    </view>
+    <button class="apply-btn" bindtap="showModal">申请租赁</button>
+
+    <!-- 弹窗 -->
+    <view class="modal" wx:if="{{showModal}}">
+      <view class="modal-mask" bindtap="hideModal"></view>
+      <view class="modal-content">
+        <form>
+          <view class="form-item">
+            <text>手机号:</text>
+            <input type="text" placeholder="请输入手机号" value="{{phoneNumber}}" bindinput="inputPhoneNumber" />
+          </view>
+          <view class="form-item">
+            <text>昵称:</text>
+            <input type="text" placeholder="请输入昵称" value="{{nickname}}" bindinput="inputNickname" />
+          </view>
+          <view class="form-item">
+            <text>设备号:</text>
+            <picker mode="selector" range="{{deviceOptions}}" value="{{deviceIndex}}" bindchange="onDeviceChange">
+              <view class="picker clickable">
+                {{deviceOptions[deviceIndex] || '请选择设备号'}}
+              </view>
+            </picker>
+          </view>
+          <view class="form-item">
+            <text>支付金额:</text>
+            <view class="fixed-amount clickable">100元/月</view>
+          </view>
+          <button class="submit-btn" bindtap="submitForm">提交申请</button>
+        </form>
+      </view>
+    </view>
+  </view>
+</view>

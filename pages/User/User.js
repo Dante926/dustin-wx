@@ -16,6 +16,26 @@ Page({
 
     power:''
   },
+  // 前往申请租赁
+  application(){
+    if (app.globalData.show == true) { // 如果用户已登录
+      wx.navigateTo({
+        url: '/pages/application/application',
+      })
+    } else { // 用户未登录
+      wx.showModal({
+        title: '请先登录',
+        complete: (res) => {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/logs/logs',
+            })
+            return;
+          }
+        }
+      })
+    }
+  },
 
   // 前往设备管理
   toFaMa() {

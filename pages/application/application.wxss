@@ -1,0 +1,110 @@
+/* 页面样式 */
+.container {
+  padding: 20px;
+}
+
+.description {
+  margin-bottom: 20px;
+}
+
+.apply-btn {
+  background-color: #1aad19;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 600px;
+  margin-top: 25%; /* 向上移动1/4的距离 */
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-item text {
+  width: 25%;
+}
+
+.form-item input, .picker {
+  width: 75%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+}
+
+.fixed-amount {
+  width: 70%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  text-align: center;
+}
+
+.submit-btn {
+  background-color: #1aad19;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.clickable {
+  border: 1px solid #4ce6ab;
+  /* 添加蓝色边框 */
+  border-radius: 4px;
+  /* 边框圆角 */
+  padding: 10px;
+  /* 内边距 */
+  background-color: #fff;
+  /* 背景色 */
+}
+
+.input {
+  color: #333; /* 设置文本颜色 */
+  background-color: #1aad19; /* 设置背景颜色 */
+  border: 1px solid #1aad19; /* 设置边框颜色 */
+  border-radius: 5px; /* 设置边框圆角 */
+  padding: 10px; /* 设置内边距 */
+  width: 100%; /* 设置宽度 */
+}

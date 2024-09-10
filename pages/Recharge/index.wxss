@@ -101,3 +101,56 @@
   font-size: 50rpx;
   text-align: center;
 }
+
+/* eq_manage */
+/* Dante ----------------------------------------- */
+.content {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+  /* 添加内边距 */
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* picker样式 */
+.picker {
+  display: inline-block;
+  width: 100%;
+}
+
+/* 可点击区域样式 */
+.clickable {
+  border: 1px solid #4ce6ab;
+  /* 添加蓝色边框 */
+  border-radius: 4px;
+  /* 边框圆角 */
+  padding: 10px;
+  /* 内边距 */
+  background-color: #fff;
+  /* 背景色 */
+}
+
+.buttons {
+  background-color: #4ce6ab;
+}
+
+/* End ----------------------------------------- */

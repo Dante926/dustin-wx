@@ -33,7 +33,7 @@
 </view>
 <!-- 第二部分列表 -->
 <view class="end">
-  <button bidtap="" class="row" style="width: 100%;">
+  <button bindtap="application" class="row" style="width: 100%;">
     <view class="left">
       <icon class="icon-small" type="success" size="16"></icon>
       <text class="text">申请租赁</text>
@@ -42,7 +42,7 @@
   </button>
 
   <!-- 设备管理 -->
-  <button wx:if="{{power === 0 ? false : true}}" class="row" style="width: 100%;border-bottom: none;" bindtap="toFaMa">
+  <button wx:if="{{power === 1 ? true :false}}" class="row" style="width: 100%;border-bottom: none;" bindtap="toFaMa">
     <view class="left">
       <icon class="icon-small" type="success" size="16"></icon>
       <text class="text">设备管理</text>
