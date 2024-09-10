@@ -15,7 +15,7 @@
         <form>
           <view class="form-item">
             <text>手机号:</text>
-            <input type="text" placeholder="请输入手机号" value="{{phoneNumber}}" bindinput="inputPhoneNumber" />
+            <input type="text" placeholder="请输入手机号" value="{{phone}}" bindinput="inputPhoneNumber" />
           </view>
           <view class="form-item">
             <text>昵称:</text>
@@ -38,9 +38,4 @@
       </view>
     </view>
   </view>
-</view>
-
-<!-- 超级管理员管理申请租赁页面 -->
-<view wx:else>
-
 </view>
