@@ -1,5 +1,7 @@
 const app = getApp();
-import {axios} from '../../utils/axios'
+import {
+  axios
+} from '../../utils/axios'
 Page({
   data: {
     showModal: false,
@@ -57,40 +59,47 @@ Page({
     } = this.data;
     const deviceNumber = deviceOptions[deviceIndex];
     if (phone && deviceNumber && nickname) {
-      if(app.globalData.Mone < 100){ // 如果用户余额不足100元
+      if (app.globalData.Mone < 100) { // 如果用户余额不足100元
         wx.showToast({
           title: '租赁机器需先支付100元，您的余额不足请先充值',
-          icon:'none'
+          icon: 'none'
         })
         return;
-      }else{
-      // 这里可以添加表单提交的逻辑，例如调用 API 或存储数据
-      const params = {
-        phone:this.data.phone,
-        name:this.data.nickname,
-        manage_eq_id:Number(deviceIndex)+1,
-        pay_mone:this.data.amount
-      }
-      axios('/admin/application','POST',params)
-      .then(res=>{
+      } else {
         wx.showModal({
-          title: '申请情况',
-          content: res.data.message,
+          title: '确认申请',
+          content: '是否确认申请租赁机器0' + Number(this.data.deviceIndex) + 1,
           complete: (res) => {
-            if (res.cancel) {
-              return
+            if (res.cancel) { // 取消申请租赁
+              return;
             }
-            if (res.confirm) {
-              return
+            if (res.confirm) { // 确认租赁
+              const params = {
+                phone: this.data.phone,
+                name: this.data.nickname,
+                manage_eq_id: Number(deviceIndex) + 1,
+                pay_mone: this.data.amount
+              }
+              axios('/admin/application', 'POST', params)
+                .then(res => {
+                  wx.showModal({
+                    title: '申请情况',
+                    content: res.data.message,
+                    complete: (res) => {
+                      if (res.cancel) {
+                        this.hideModal();
+                        return;
+                      }
+                      if (res.confirm) {
+                        this.hideModal();
+                        return;
+                      }
+                    }
+                  })
+                })
             }
           }
         })
-      })
-      /* wx.showToast({
-        title: '申请提交成功',
-        icon: 'success'
-      });
-      this.hideModal(); */
       }
     } else { // 有必填项未填
       wx.showToast({
@@ -104,10 +113,27 @@ Page({
   // 申请租赁Ene----------------------------
 
   onShow() {
-    console.log(app.globalData);
     this.setData({
       power: app.globalData.power,
-      phone:app.globalData.UserPhone
+      phone: app.globalData.UserPhone
     })
+    if (this.data.power === 1) {
+      wx.showModal({
+        title: '提示',
+        content: '你已是管理员，不可申请管理多个机器',
+        complete: (res) => {
+          if (res.cancel) {
+            wx.navigateBack({
+              delta: 1 // 回退的页面数，默认是1
+            });
+          }
+          if (res.confirm) {
+            wx.navigateBack({
+              delta: 1 // 回退的页面数，默认是1
+            });
+          }
+        }
+      })
+    }
   }
 });

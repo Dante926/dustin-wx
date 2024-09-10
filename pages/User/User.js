@@ -13,7 +13,6 @@ Page({
     avatarUrl: '',
     localhost: app.globalData.localhost,
     num: 20, //计数值
-
     power: ''
   },
   // 前往申请租赁
