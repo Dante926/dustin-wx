@@ -1,5 +1,6 @@
 <!-- 页面结构 -->
-<view>
+<!-- 申请租赁页面 -->
+<view wx:if="{{power === 2 ? false : true}}">
   <view class="container">
     <view class="description">
       <!-- 申请租赁设备的文本描述 -->
@@ -37,4 +38,9 @@
       </view>
     </view>
   </view>
+</view>
+
+<!-- 超级管理员管理申请租赁页面 -->
+<view wx:else>
+
 </view>

@@ -12,12 +12,12 @@ Page({
     UserPhone: app.globalData.UserPhone,
     avatarUrl: '',
     localhost: app.globalData.localhost,
-    num: 20 ,//计数值
+    num: 20, //计数值
 
-    power:''
+    power: ''
   },
   // 前往申请租赁
-  application(){
+  application() {
     if (app.globalData.show == true) { // 如果用户已登录
       wx.navigateTo({
         url: '/pages/application/application',
@@ -178,13 +178,13 @@ Page({
                 login: {
                   show: false,
                 },
-                power:0
+                power: 0
               })
-              wx.showToast({
-                title: '退出成功',
-                icon:'none'
-              })
-              return;
+            wx.showToast({
+              title: '退出成功',
+              icon: 'none'
+            })
+            return;
           }
         }
       })
@@ -230,7 +230,7 @@ Page({
   onShow() {
     this.setData({
       avatarUrl: app.globalData.avatarUrl,
-      power:app.globalData.power
+      power: app.globalData.power
     })
     console.log(this.data.power);
   }
