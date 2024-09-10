@@ -19,10 +19,10 @@ Page({
     pickup_id: 2
   },
   // 机器停用提示
-  pickupnone(){
+  pickupnone() {
     wx.showToast({
       title: '机器已停用，请勿操作',
-      icon:'none'
+      icon: 'none'
     })
     return;
   },

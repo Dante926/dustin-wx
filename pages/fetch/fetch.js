@@ -18,6 +18,15 @@ Page({
     mode_show: '',
     pickup_id: 1
   },
+  // 机器停用提示
+  pickupnone() {
+    wx.showToast({
+      title: '机器已停用，请勿操作',
+      icon: 'none'
+    })
+    return;
+  },
+
   // 取纸管理方法
   pickup() {
     if (app.globalData.Mone < this.data.price) {
