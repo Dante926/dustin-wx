@@ -123,7 +123,6 @@
 }
 
 .super-header {
-  background-color: #f8f8f8;
   padding: 20px;
   text-align: center;
 }
@@ -153,8 +152,7 @@
 .super-avatar {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .super-info {

@@ -49,16 +49,17 @@
       <block wx:for="{{applications}}" wx:key="id">
         <view class="super-application-item">
           <view class="super-left-section">
-            <image class="super-avatar" src="{{item.avatarUrl}}" mode="aspectFill" />
+            <image class="super-avatar" src="../../images/用户.png" mode="aspectFill" />
             <view class="super-info">
-              <text class="super-nickname">{{item.nickname}}</text>
-              <text class="super-phone">{{item.phone}}</text>
-              <text class="super-balance">剩余金额: {{item.balance}}</text>
+              <text class="super-nickname">昵称：{{item.name}}</text>
+              <text class="super-phone">账号：{{item.phone}}</text>
+              <text class="super-balance">时间：{{item.date}}</text>
+              <text class="super-balance">租赁设备：0{{item.pickup_id}}</text>
             </view>
           </view>
           <view class="super-right-section">
-            <button class="super-agree-btn" data-id="{{item.id}}" bindtap="onAgree">同意</button>
-            <button class="super-reject-btn" data-id="{{item.id}}" bindtap="onReject">拒绝</button>
+            <button class="super-agree-btn" data-phone="{{item.phone}}" bindtap="onAgree" size="mini" type="primary">同意</button>
+            <button class="super-reject-btn" data-phone="{{item.phone}}" bindtap="onReject" size="mini" type="warn">拒绝</button>
           </view>
         </view>
       </block>

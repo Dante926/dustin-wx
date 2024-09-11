@@ -12,22 +12,7 @@ Page({
     amount: 100, // 这里支付金额设置为固定的100
     power: '',
     // 管理员管理租赁-------------------------
-    applications: [
-      {
-        id: 1,
-        avatarUrl: '../../images/用户.png',
-        nickname: '用户1',
-        phone: '13800000001',
-        balance: '100.00'
-      },
-      {
-        id: 2,
-        avatarUrl: '../../images/用户.png',
-        nickname: '用户2',
-        phone: '13800000002',
-        balance: '200.00'
-      }
-    ] // 初始化为空数组
+    applications: [] // 初始化为空数组
     // End ----------------------------------
   },
 
@@ -128,8 +113,87 @@ Page({
 
   // 申请租赁Ene----------------------------
 
-  // 管理员管理租赁-------------------------
+  // 管理员同意管理租赁-------------------------
+  onAgree(e) {
+    const phone = e.currentTarget.dataset.phone;
+    const item = this.data.applications.find(app => app.phone === phone);
+    const params = {
+      phone: item.phone,
+      name: item.name,
+      manage_eq_id: item.pickup_id
+    }
+    axios('/admin/agree', 'POST', params)
+      .then(res => {
+        console.log(res);
+        if (res.data.message === '申请成功') {
+          wx.showModal({
+            title: '提示',
+            content: '已同意' + item.name + '成为管理员',
+            complete: (res) => {
+              if (res.cancel) {
+                this.pullapplication();
+                return;
+              }
+              if (res.confirm) {
+                this.pullapplication();
+                return;
+              }
+            }
+          })
+        } else if (res.data.message === '余额不足') {
+          wx.showModal({
+            title: '提示',
+            content: '用户余额不足,请联系用户充值',
+            complete: (res) => {
+              if (res.cancel) {
+                return;
+              }
+              if (res.confirm) {
+                return;
+              }
+            }
+          })
+        } else {
+          wx.showToast({
+            title: '操作失败,' + res.data.message,
+            icon: 'none'
+          })
+          return;
+        }
+      })
+  },
 
+  // 获取申请租赁纪录方法
+  pullapplication() {
+    axios('/admin/pullapplication', 'POST')
+      .then(res => {
+        const {
+          code,
+          data
+        } = res.data
+        if (code === 200) {
+          this.setData({
+            applications: data[0].map(item => {
+              const date = new Date(item.date);
+              const formattedTime = `${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
+              return {
+                ...item,
+                date: formattedTime,
+              };
+            })
+          })
+          console.log(this.data.applications);
+        }
+      })
+  },
+
+  onReject() {
+    wx.showToast({
+      title: '拒绝租赁,保留数据用户',
+      icon: 'none'
+    })
+    return;
+  },
   // End ----------------------------------
 
   onShow() {
@@ -137,6 +201,9 @@ Page({
       power: app.globalData.power,
       phone: app.globalData.UserPhone
     })
+    /* 超级管理员Sta */
+    this.pullapplication();
+    /* 超级管理员End */
     if (this.data.power === 1) {
       wx.showModal({
         title: '提示',
@@ -146,11 +213,13 @@ Page({
             wx.navigateBack({
               delta: 1 // 回退的页面数，默认是1
             });
+            return;
           }
           if (res.confirm) {
             wx.navigateBack({
               delta: 1 // 回退的页面数，默认是1
             });
+            return;
           }
         }
       })

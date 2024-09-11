@@ -32,6 +32,7 @@ App({
     minutes: 0,
     seconds: 0, // 年月日时分
     Onstaic: false, //是否充电的标志位
+    Mone:0,
 
     SocketCountt: 0,
     /*正在运行的订单信息开始*/

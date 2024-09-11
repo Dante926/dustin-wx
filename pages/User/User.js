@@ -231,6 +231,5 @@ Page({
       avatarUrl: app.globalData.avatarUrl,
       power: app.globalData.power
     })
-    console.log(this.data.power);
   }
 })

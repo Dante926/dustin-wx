@@ -270,8 +270,7 @@ Page({
               app.globalData.Mone = data[0].mone;
               app.globalData.Username = data[0].name;
               app.globalData.power = data[0].power
-              app.globalData.manage_eq_id =data[0].manage_eq_id
-              console.log(app.globalData.manage_eq_id);
+              app.globalData.manage_eq_id = data[0].manage_eq_id
               // 跳转至User页面
               wx.switchTab({
                 url: '/pages/User/User',
